@@ -19,7 +19,15 @@ string data(string a, int n, Database database[])
     bool ret6 = regex_match(a, reg6);
     if (ret1 == false && ret2 == false and ret6 == false)
     {
-        return a;
+        if (a != "+" && a != "-" && a != "*" && a != "/" && a != "(" && a != ")")
+        {
+            cout << "Invalid input" << endl;
+            exit(-1);
+        }
+        else
+        {
+            return a;
+        }
     }
     database[n].sign = 0;
     if (a[0] == '-')
@@ -43,7 +51,6 @@ string data(string a, int n, Database database[])
         database[n].a1 = match[1];
         database[n].a1 += match[2];
         database[n].point = match[2].length();
-       
     }
     return to_string(n);
 }
