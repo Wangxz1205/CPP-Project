@@ -361,6 +361,7 @@ string transToRPN(string s)
 ## Part3 - Result & Verification
 ---
 Test case #1: add/minus/multiple/division
+
 ![Alternative text](pic/1.png)
 
 Test case #2: sqrt/^2
