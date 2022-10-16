@@ -6,9 +6,7 @@
 
 ## Part1 - Analysis
 ---
-The first is to consider the input of the problem. After analyzing several types of input of the problem, I decided to divide the input into three types: integer, floating-point number and standard scientific counting method. Given the possibility of value overflow, I chose String to store values and perform operations. I also used regular expressions to split my input to simplify the code.
-` #include <string> `
-` #include <regex>`
+因为在project1中我已经完成了高精度且可完成大数运算的乘法器，在此基础上，我在第二个project中完成了更多功能的计算器，可以实现普通的运算以及赋值运算。为了运算时间更快，我设置了运算数字
 
 Later in the computation, I converted both integers and floating-point number into a scientific representation of e0. In this operation, I multiply the things before e, and add the things after e, which simplifies a lot.
 
