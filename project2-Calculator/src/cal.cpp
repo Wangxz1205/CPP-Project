@@ -5,7 +5,7 @@
 #include <math.h>
 #include <queue>
 #include <stack>
-#include "main.hpp"
+#include "../main.hpp"
 
 using namespace std;
 

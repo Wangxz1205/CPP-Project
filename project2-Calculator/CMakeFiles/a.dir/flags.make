@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/wangxz/project2/include
+CXX_INCLUDES = -I/home/wangxz/project2/project2-Calculator/include
 
 CXX_FLAGS = 
 

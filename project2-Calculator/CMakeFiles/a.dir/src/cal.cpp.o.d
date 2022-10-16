@@ -1,5 +1,5 @@
-CMakeFiles/a.dir/main.cpp.o: \
- /home/wangxz/project2/project2-Calculator/main.cpp \
+CMakeFiles/a.dir/src/cal.cpp.o: \
+ /home/wangxz/project2/project2-Calculator/src/cal.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -230,5 +230,6 @@ CMakeFiles/a.dir/main.cpp.o: \
  /usr/include/c++/11/tr1/modified_bessel_func.tcc \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
- /usr/include/c++/11/tr1/riemann_zeta.tcc \
- /home/wangxz/project2/project2-Calculator/main.hpp
+ /usr/include/c++/11/tr1/riemann_zeta.tcc /usr/include/c++/11/queue \
+ /usr/include/c++/11/bits/stl_queue.h \
+ /home/wangxz/project2/project2-Calculator/src/../main.hpp

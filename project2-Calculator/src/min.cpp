@@ -3,7 +3,7 @@
 #include <regex>
 #include <sstream>
 #include <math.h>
-#include "main.hpp"
+#include "../main.hpp"
 
 using namespace std;
 

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/wangxz/project2
+CMAKE_SOURCE_DIR = /home/wangxz/project2/project2-Calculator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/wangxz/project2
+CMAKE_BINARY_DIR = /home/wangxz/project2/project2-Calculator
 
 # Include any dependencies generated for this target.
 include CMakeFiles/a.dir/depend.make
@@ -72,188 +72,188 @@ include CMakeFiles/a.dir/flags.make
 CMakeFiles/a.dir/main.cpp.o: CMakeFiles/a.dir/flags.make
 CMakeFiles/a.dir/main.cpp.o: main.cpp
 CMakeFiles/a.dir/main.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/a.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/main.cpp.o -MF CMakeFiles/a.dir/main.cpp.o.d -o CMakeFiles/a.dir/main.cpp.o -c /home/wangxz/project2/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/a.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/main.cpp.o -MF CMakeFiles/a.dir/main.cpp.o.d -o CMakeFiles/a.dir/main.cpp.o -c /home/wangxz/project2/project2-Calculator/main.cpp
 
 CMakeFiles/a.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/main.cpp > CMakeFiles/a.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/main.cpp > CMakeFiles/a.dir/main.cpp.i
 
 CMakeFiles/a.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/main.cpp -o CMakeFiles/a.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/main.cpp -o CMakeFiles/a.dir/main.cpp.s
 
-CMakeFiles/a.dir/data.cpp.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/data.cpp.o: data.cpp
-CMakeFiles/a.dir/data.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/a.dir/data.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/data.cpp.o -MF CMakeFiles/a.dir/data.cpp.o.d -o CMakeFiles/a.dir/data.cpp.o -c /home/wangxz/project2/data.cpp
+CMakeFiles/a.dir/src/data.cpp.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/src/data.cpp.o: src/data.cpp
+CMakeFiles/a.dir/src/data.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/a.dir/src/data.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/src/data.cpp.o -MF CMakeFiles/a.dir/src/data.cpp.o.d -o CMakeFiles/a.dir/src/data.cpp.o -c /home/wangxz/project2/project2-Calculator/src/data.cpp
 
-CMakeFiles/a.dir/data.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/data.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/data.cpp > CMakeFiles/a.dir/data.cpp.i
+CMakeFiles/a.dir/src/data.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/src/data.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/src/data.cpp > CMakeFiles/a.dir/src/data.cpp.i
 
-CMakeFiles/a.dir/data.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/data.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/data.cpp -o CMakeFiles/a.dir/data.cpp.s
+CMakeFiles/a.dir/src/data.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/src/data.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/src/data.cpp -o CMakeFiles/a.dir/src/data.cpp.s
 
-CMakeFiles/a.dir/trans.cpp.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/trans.cpp.o: trans.cpp
-CMakeFiles/a.dir/trans.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/a.dir/trans.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/trans.cpp.o -MF CMakeFiles/a.dir/trans.cpp.o.d -o CMakeFiles/a.dir/trans.cpp.o -c /home/wangxz/project2/trans.cpp
+CMakeFiles/a.dir/src/trans.cpp.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/src/trans.cpp.o: src/trans.cpp
+CMakeFiles/a.dir/src/trans.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/a.dir/src/trans.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/src/trans.cpp.o -MF CMakeFiles/a.dir/src/trans.cpp.o.d -o CMakeFiles/a.dir/src/trans.cpp.o -c /home/wangxz/project2/project2-Calculator/src/trans.cpp
 
-CMakeFiles/a.dir/trans.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/trans.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/trans.cpp > CMakeFiles/a.dir/trans.cpp.i
+CMakeFiles/a.dir/src/trans.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/src/trans.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/src/trans.cpp > CMakeFiles/a.dir/src/trans.cpp.i
 
-CMakeFiles/a.dir/trans.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/trans.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/trans.cpp -o CMakeFiles/a.dir/trans.cpp.s
+CMakeFiles/a.dir/src/trans.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/src/trans.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/src/trans.cpp -o CMakeFiles/a.dir/src/trans.cpp.s
 
-CMakeFiles/a.dir/cal.cpp.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/cal.cpp.o: cal.cpp
-CMakeFiles/a.dir/cal.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/a.dir/cal.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/cal.cpp.o -MF CMakeFiles/a.dir/cal.cpp.o.d -o CMakeFiles/a.dir/cal.cpp.o -c /home/wangxz/project2/cal.cpp
+CMakeFiles/a.dir/src/cal.cpp.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/src/cal.cpp.o: src/cal.cpp
+CMakeFiles/a.dir/src/cal.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/a.dir/src/cal.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/src/cal.cpp.o -MF CMakeFiles/a.dir/src/cal.cpp.o.d -o CMakeFiles/a.dir/src/cal.cpp.o -c /home/wangxz/project2/project2-Calculator/src/cal.cpp
 
-CMakeFiles/a.dir/cal.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/cal.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/cal.cpp > CMakeFiles/a.dir/cal.cpp.i
+CMakeFiles/a.dir/src/cal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/src/cal.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/src/cal.cpp > CMakeFiles/a.dir/src/cal.cpp.i
 
-CMakeFiles/a.dir/cal.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/cal.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/cal.cpp -o CMakeFiles/a.dir/cal.cpp.s
+CMakeFiles/a.dir/src/cal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/src/cal.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/src/cal.cpp -o CMakeFiles/a.dir/src/cal.cpp.s
 
-CMakeFiles/a.dir/mul.cpp.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/mul.cpp.o: mul.cpp
-CMakeFiles/a.dir/mul.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/a.dir/mul.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/mul.cpp.o -MF CMakeFiles/a.dir/mul.cpp.o.d -o CMakeFiles/a.dir/mul.cpp.o -c /home/wangxz/project2/mul.cpp
+CMakeFiles/a.dir/src/mul.cpp.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/src/mul.cpp.o: src/mul.cpp
+CMakeFiles/a.dir/src/mul.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/a.dir/src/mul.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/src/mul.cpp.o -MF CMakeFiles/a.dir/src/mul.cpp.o.d -o CMakeFiles/a.dir/src/mul.cpp.o -c /home/wangxz/project2/project2-Calculator/src/mul.cpp
 
-CMakeFiles/a.dir/mul.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/mul.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/mul.cpp > CMakeFiles/a.dir/mul.cpp.i
+CMakeFiles/a.dir/src/mul.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/src/mul.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/src/mul.cpp > CMakeFiles/a.dir/src/mul.cpp.i
 
-CMakeFiles/a.dir/mul.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/mul.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/mul.cpp -o CMakeFiles/a.dir/mul.cpp.s
+CMakeFiles/a.dir/src/mul.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/src/mul.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/src/mul.cpp -o CMakeFiles/a.dir/src/mul.cpp.s
 
-CMakeFiles/a.dir/add.cpp.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/add.cpp.o: add.cpp
-CMakeFiles/a.dir/add.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/a.dir/add.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/add.cpp.o -MF CMakeFiles/a.dir/add.cpp.o.d -o CMakeFiles/a.dir/add.cpp.o -c /home/wangxz/project2/add.cpp
+CMakeFiles/a.dir/src/add.cpp.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/src/add.cpp.o: src/add.cpp
+CMakeFiles/a.dir/src/add.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/a.dir/src/add.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/src/add.cpp.o -MF CMakeFiles/a.dir/src/add.cpp.o.d -o CMakeFiles/a.dir/src/add.cpp.o -c /home/wangxz/project2/project2-Calculator/src/add.cpp
 
-CMakeFiles/a.dir/add.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/add.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/add.cpp > CMakeFiles/a.dir/add.cpp.i
+CMakeFiles/a.dir/src/add.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/src/add.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/src/add.cpp > CMakeFiles/a.dir/src/add.cpp.i
 
-CMakeFiles/a.dir/add.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/add.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/add.cpp -o CMakeFiles/a.dir/add.cpp.s
+CMakeFiles/a.dir/src/add.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/src/add.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/src/add.cpp -o CMakeFiles/a.dir/src/add.cpp.s
 
-CMakeFiles/a.dir/min.cpp.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/min.cpp.o: min.cpp
-CMakeFiles/a.dir/min.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/a.dir/min.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/min.cpp.o -MF CMakeFiles/a.dir/min.cpp.o.d -o CMakeFiles/a.dir/min.cpp.o -c /home/wangxz/project2/min.cpp
+CMakeFiles/a.dir/src/min.cpp.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/src/min.cpp.o: src/min.cpp
+CMakeFiles/a.dir/src/min.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/a.dir/src/min.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/src/min.cpp.o -MF CMakeFiles/a.dir/src/min.cpp.o.d -o CMakeFiles/a.dir/src/min.cpp.o -c /home/wangxz/project2/project2-Calculator/src/min.cpp
 
-CMakeFiles/a.dir/min.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/min.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/min.cpp > CMakeFiles/a.dir/min.cpp.i
+CMakeFiles/a.dir/src/min.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/src/min.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/src/min.cpp > CMakeFiles/a.dir/src/min.cpp.i
 
-CMakeFiles/a.dir/min.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/min.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/min.cpp -o CMakeFiles/a.dir/min.cpp.s
+CMakeFiles/a.dir/src/min.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/src/min.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/src/min.cpp -o CMakeFiles/a.dir/src/min.cpp.s
 
-CMakeFiles/a.dir/div.cpp.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/div.cpp.o: div.cpp
-CMakeFiles/a.dir/div.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/a.dir/div.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/div.cpp.o -MF CMakeFiles/a.dir/div.cpp.o.d -o CMakeFiles/a.dir/div.cpp.o -c /home/wangxz/project2/div.cpp
+CMakeFiles/a.dir/src/div.cpp.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/src/div.cpp.o: src/div.cpp
+CMakeFiles/a.dir/src/div.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/a.dir/src/div.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/src/div.cpp.o -MF CMakeFiles/a.dir/src/div.cpp.o.d -o CMakeFiles/a.dir/src/div.cpp.o -c /home/wangxz/project2/project2-Calculator/src/div.cpp
 
-CMakeFiles/a.dir/div.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/div.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/div.cpp > CMakeFiles/a.dir/div.cpp.i
+CMakeFiles/a.dir/src/div.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/src/div.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/src/div.cpp > CMakeFiles/a.dir/src/div.cpp.i
 
-CMakeFiles/a.dir/div.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/div.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/div.cpp -o CMakeFiles/a.dir/div.cpp.s
+CMakeFiles/a.dir/src/div.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/src/div.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/src/div.cpp -o CMakeFiles/a.dir/src/div.cpp.s
 
-CMakeFiles/a.dir/cmp.cpp.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/cmp.cpp.o: cmp.cpp
-CMakeFiles/a.dir/cmp.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/a.dir/cmp.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/cmp.cpp.o -MF CMakeFiles/a.dir/cmp.cpp.o.d -o CMakeFiles/a.dir/cmp.cpp.o -c /home/wangxz/project2/cmp.cpp
+CMakeFiles/a.dir/src/cmp.cpp.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/src/cmp.cpp.o: src/cmp.cpp
+CMakeFiles/a.dir/src/cmp.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/a.dir/src/cmp.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/src/cmp.cpp.o -MF CMakeFiles/a.dir/src/cmp.cpp.o.d -o CMakeFiles/a.dir/src/cmp.cpp.o -c /home/wangxz/project2/project2-Calculator/src/cmp.cpp
 
-CMakeFiles/a.dir/cmp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/cmp.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/cmp.cpp > CMakeFiles/a.dir/cmp.cpp.i
+CMakeFiles/a.dir/src/cmp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/src/cmp.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/src/cmp.cpp > CMakeFiles/a.dir/src/cmp.cpp.i
 
-CMakeFiles/a.dir/cmp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/cmp.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/cmp.cpp -o CMakeFiles/a.dir/cmp.cpp.s
+CMakeFiles/a.dir/src/cmp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/src/cmp.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/src/cmp.cpp -o CMakeFiles/a.dir/src/cmp.cpp.s
 
-CMakeFiles/a.dir/judgefuzhi.cpp.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/judgefuzhi.cpp.o: judgefuzhi.cpp
-CMakeFiles/a.dir/judgefuzhi.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/a.dir/judgefuzhi.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/judgefuzhi.cpp.o -MF CMakeFiles/a.dir/judgefuzhi.cpp.o.d -o CMakeFiles/a.dir/judgefuzhi.cpp.o -c /home/wangxz/project2/judgefuzhi.cpp
+CMakeFiles/a.dir/src/judgefuzhi.cpp.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/src/judgefuzhi.cpp.o: src/judgefuzhi.cpp
+CMakeFiles/a.dir/src/judgefuzhi.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/a.dir/src/judgefuzhi.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/src/judgefuzhi.cpp.o -MF CMakeFiles/a.dir/src/judgefuzhi.cpp.o.d -o CMakeFiles/a.dir/src/judgefuzhi.cpp.o -c /home/wangxz/project2/project2-Calculator/src/judgefuzhi.cpp
 
-CMakeFiles/a.dir/judgefuzhi.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/judgefuzhi.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/judgefuzhi.cpp > CMakeFiles/a.dir/judgefuzhi.cpp.i
+CMakeFiles/a.dir/src/judgefuzhi.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/src/judgefuzhi.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/src/judgefuzhi.cpp > CMakeFiles/a.dir/src/judgefuzhi.cpp.i
 
-CMakeFiles/a.dir/judgefuzhi.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/judgefuzhi.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/judgefuzhi.cpp -o CMakeFiles/a.dir/judgefuzhi.cpp.s
+CMakeFiles/a.dir/src/judgefuzhi.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/src/judgefuzhi.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/src/judgefuzhi.cpp -o CMakeFiles/a.dir/src/judgefuzhi.cpp.s
 
-CMakeFiles/a.dir/judgeother.cpp.o: CMakeFiles/a.dir/flags.make
-CMakeFiles/a.dir/judgeother.cpp.o: judgeother.cpp
-CMakeFiles/a.dir/judgeother.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/a.dir/judgeother.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/judgeother.cpp.o -MF CMakeFiles/a.dir/judgeother.cpp.o.d -o CMakeFiles/a.dir/judgeother.cpp.o -c /home/wangxz/project2/judgeother.cpp
+CMakeFiles/a.dir/src/judgeother.cpp.o: CMakeFiles/a.dir/flags.make
+CMakeFiles/a.dir/src/judgeother.cpp.o: src/judgeother.cpp
+CMakeFiles/a.dir/src/judgeother.cpp.o: CMakeFiles/a.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/a.dir/src/judgeother.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/a.dir/src/judgeother.cpp.o -MF CMakeFiles/a.dir/src/judgeother.cpp.o.d -o CMakeFiles/a.dir/src/judgeother.cpp.o -c /home/wangxz/project2/project2-Calculator/src/judgeother.cpp
 
-CMakeFiles/a.dir/judgeother.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/judgeother.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/judgeother.cpp > CMakeFiles/a.dir/judgeother.cpp.i
+CMakeFiles/a.dir/src/judgeother.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a.dir/src/judgeother.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wangxz/project2/project2-Calculator/src/judgeother.cpp > CMakeFiles/a.dir/src/judgeother.cpp.i
 
-CMakeFiles/a.dir/judgeother.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/judgeother.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/judgeother.cpp -o CMakeFiles/a.dir/judgeother.cpp.s
+CMakeFiles/a.dir/src/judgeother.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a.dir/src/judgeother.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wangxz/project2/project2-Calculator/src/judgeother.cpp -o CMakeFiles/a.dir/src/judgeother.cpp.s
 
 # Object files for target a
 a_OBJECTS = \
 "CMakeFiles/a.dir/main.cpp.o" \
-"CMakeFiles/a.dir/data.cpp.o" \
-"CMakeFiles/a.dir/trans.cpp.o" \
-"CMakeFiles/a.dir/cal.cpp.o" \
-"CMakeFiles/a.dir/mul.cpp.o" \
-"CMakeFiles/a.dir/add.cpp.o" \
-"CMakeFiles/a.dir/min.cpp.o" \
-"CMakeFiles/a.dir/div.cpp.o" \
-"CMakeFiles/a.dir/cmp.cpp.o" \
-"CMakeFiles/a.dir/judgefuzhi.cpp.o" \
-"CMakeFiles/a.dir/judgeother.cpp.o"
+"CMakeFiles/a.dir/src/data.cpp.o" \
+"CMakeFiles/a.dir/src/trans.cpp.o" \
+"CMakeFiles/a.dir/src/cal.cpp.o" \
+"CMakeFiles/a.dir/src/mul.cpp.o" \
+"CMakeFiles/a.dir/src/add.cpp.o" \
+"CMakeFiles/a.dir/src/min.cpp.o" \
+"CMakeFiles/a.dir/src/div.cpp.o" \
+"CMakeFiles/a.dir/src/cmp.cpp.o" \
+"CMakeFiles/a.dir/src/judgefuzhi.cpp.o" \
+"CMakeFiles/a.dir/src/judgeother.cpp.o"
 
 # External object files for target a
 a_EXTERNAL_OBJECTS =
 
 a : CMakeFiles/a.dir/main.cpp.o
-a : CMakeFiles/a.dir/data.cpp.o
-a : CMakeFiles/a.dir/trans.cpp.o
-a : CMakeFiles/a.dir/cal.cpp.o
-a : CMakeFiles/a.dir/mul.cpp.o
-a : CMakeFiles/a.dir/add.cpp.o
-a : CMakeFiles/a.dir/min.cpp.o
-a : CMakeFiles/a.dir/div.cpp.o
-a : CMakeFiles/a.dir/cmp.cpp.o
-a : CMakeFiles/a.dir/judgefuzhi.cpp.o
-a : CMakeFiles/a.dir/judgeother.cpp.o
+a : CMakeFiles/a.dir/src/data.cpp.o
+a : CMakeFiles/a.dir/src/trans.cpp.o
+a : CMakeFiles/a.dir/src/cal.cpp.o
+a : CMakeFiles/a.dir/src/mul.cpp.o
+a : CMakeFiles/a.dir/src/add.cpp.o
+a : CMakeFiles/a.dir/src/min.cpp.o
+a : CMakeFiles/a.dir/src/div.cpp.o
+a : CMakeFiles/a.dir/src/cmp.cpp.o
+a : CMakeFiles/a.dir/src/judgefuzhi.cpp.o
+a : CMakeFiles/a.dir/src/judgeother.cpp.o
 a : CMakeFiles/a.dir/build.make
 a : CMakeFiles/a.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wangxz/project2/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wangxz/project2/project2-Calculator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable a"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/a.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -265,6 +265,6 @@ CMakeFiles/a.dir/clean:
 .PHONY : CMakeFiles/a.dir/clean
 
 CMakeFiles/a.dir/depend:
-	cd /home/wangxz/project2 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/wangxz/project2 /home/wangxz/project2 /home/wangxz/project2 /home/wangxz/project2 /home/wangxz/project2/CMakeFiles/a.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/wangxz/project2/project2-Calculator && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/wangxz/project2/project2-Calculator /home/wangxz/project2/project2-Calculator /home/wangxz/project2/project2-Calculator /home/wangxz/project2/project2-Calculator /home/wangxz/project2/project2-Calculator/CMakeFiles/a.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/a.dir/depend
 

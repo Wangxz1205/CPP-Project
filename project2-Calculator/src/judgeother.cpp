@@ -4,7 +4,7 @@
 #include <regex>
 #include <math.h>
 #include <cstring>
-#include "main.hpp"
+#include "../main.hpp"
 
 using namespace std;
 

@@ -4,4 +4,4 @@ project(a)
 
 include_directories(include)
 
-add_executable(a main.cpp data.cpp trans.cpp cal.cpp mul.cpp add.cpp min.cpp div.cpp cmp.cpp judgefuzhi.cpp judgeother.cpp)
+add_executable(a main.cpp src/data.cpp src/trans.cpp src/cal.cpp src/mul.cpp src/add.cpp src/min.cpp src/div.cpp src/cmp.cpp src/judgefuzhi.cpp src/judgeother.cpp)

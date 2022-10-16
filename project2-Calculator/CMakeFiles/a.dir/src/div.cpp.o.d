@@ -1,5 +1,5 @@
-CMakeFiles/a.dir/main.cpp.o: \
- /home/wangxz/project2/project2-Calculator/main.cpp \
+CMakeFiles/a.dir/src/div.cpp.o: \
+ /home/wangxz/project2/project2-Calculator/src/div.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -231,4 +231,4 @@ CMakeFiles/a.dir/main.cpp.o: \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc \
- /home/wangxz/project2/project2-Calculator/main.hpp
+ /home/wangxz/project2/project2-Calculator/src/../main.hpp

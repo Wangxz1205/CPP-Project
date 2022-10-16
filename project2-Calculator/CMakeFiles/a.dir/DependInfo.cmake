@@ -8,17 +8,17 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/wangxz/project2/add.cpp" "CMakeFiles/a.dir/add.cpp.o" "gcc" "CMakeFiles/a.dir/add.cpp.o.d"
-  "/home/wangxz/project2/cal.cpp" "CMakeFiles/a.dir/cal.cpp.o" "gcc" "CMakeFiles/a.dir/cal.cpp.o.d"
-  "/home/wangxz/project2/cmp.cpp" "CMakeFiles/a.dir/cmp.cpp.o" "gcc" "CMakeFiles/a.dir/cmp.cpp.o.d"
-  "/home/wangxz/project2/data.cpp" "CMakeFiles/a.dir/data.cpp.o" "gcc" "CMakeFiles/a.dir/data.cpp.o.d"
-  "/home/wangxz/project2/div.cpp" "CMakeFiles/a.dir/div.cpp.o" "gcc" "CMakeFiles/a.dir/div.cpp.o.d"
-  "/home/wangxz/project2/judgefuzhi.cpp" "CMakeFiles/a.dir/judgefuzhi.cpp.o" "gcc" "CMakeFiles/a.dir/judgefuzhi.cpp.o.d"
-  "/home/wangxz/project2/judgeother.cpp" "CMakeFiles/a.dir/judgeother.cpp.o" "gcc" "CMakeFiles/a.dir/judgeother.cpp.o.d"
-  "/home/wangxz/project2/main.cpp" "CMakeFiles/a.dir/main.cpp.o" "gcc" "CMakeFiles/a.dir/main.cpp.o.d"
-  "/home/wangxz/project2/min.cpp" "CMakeFiles/a.dir/min.cpp.o" "gcc" "CMakeFiles/a.dir/min.cpp.o.d"
-  "/home/wangxz/project2/mul.cpp" "CMakeFiles/a.dir/mul.cpp.o" "gcc" "CMakeFiles/a.dir/mul.cpp.o.d"
-  "/home/wangxz/project2/trans.cpp" "CMakeFiles/a.dir/trans.cpp.o" "gcc" "CMakeFiles/a.dir/trans.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/main.cpp" "CMakeFiles/a.dir/main.cpp.o" "gcc" "CMakeFiles/a.dir/main.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/src/add.cpp" "CMakeFiles/a.dir/src/add.cpp.o" "gcc" "CMakeFiles/a.dir/src/add.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/src/cal.cpp" "CMakeFiles/a.dir/src/cal.cpp.o" "gcc" "CMakeFiles/a.dir/src/cal.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/src/cmp.cpp" "CMakeFiles/a.dir/src/cmp.cpp.o" "gcc" "CMakeFiles/a.dir/src/cmp.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/src/data.cpp" "CMakeFiles/a.dir/src/data.cpp.o" "gcc" "CMakeFiles/a.dir/src/data.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/src/div.cpp" "CMakeFiles/a.dir/src/div.cpp.o" "gcc" "CMakeFiles/a.dir/src/div.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/src/judgefuzhi.cpp" "CMakeFiles/a.dir/src/judgefuzhi.cpp.o" "gcc" "CMakeFiles/a.dir/src/judgefuzhi.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/src/judgeother.cpp" "CMakeFiles/a.dir/src/judgeother.cpp.o" "gcc" "CMakeFiles/a.dir/src/judgeother.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/src/min.cpp" "CMakeFiles/a.dir/src/min.cpp.o" "gcc" "CMakeFiles/a.dir/src/min.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/src/mul.cpp" "CMakeFiles/a.dir/src/mul.cpp.o" "gcc" "CMakeFiles/a.dir/src/mul.cpp.o.d"
+  "/home/wangxz/project2/project2-Calculator/src/trans.cpp" "CMakeFiles/a.dir/src/trans.cpp.o" "gcc" "CMakeFiles/a.dir/src/trans.cpp.o.d"
   )
 
 # Targets to which this target links.
