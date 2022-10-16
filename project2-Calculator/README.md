@@ -6,13 +6,36 @@
 
 ## Part1 - Analysis
 ---
-因为在project1中我已经完成了高精度且可完成大数运算的乘法器，在此基础上，我在第二个project中完成了更多功能的计算器，可以实现普通的运算以及赋值运算。为了运算时间更快，我设置了运算数字
+因为在project1中我已经完成了高精度且可完成大数运算的乘法器，在此基础上，我在第二个project中完成了更多功能的计算器，可以实现普通的运算以及赋值运算。为了运算时间更快，我设置了运算数字总共可以到20个，同时为了实现能够科学计数法的数字运算，我建立了一个structure结构体来储存每一个数字的详细信息，包括小数点的位置，数字的正负等等。
+```c++
+struct Database
+{
+    long long point;
+    string a1;
+    int sign, ae;
+};
+```
+整个改进的运算器我预计实现的算法有加法，减法，乘法，除法，开方以及平方多次方的计算，同时也实现了赋值计算，数字的范围从高精度的整数到小数，再到科学计数法都可以实现。
 
-Later in the computation, I converted both integers and floating-point number into a scientific representation of e0. In this operation, I multiply the things before e, and add the things after e, which simplifies a lot.
+在进行普通运算时，会出现乘除法的优先级，以及括号的更高级，所以我考虑使用了逆波兰表达式。在平时我们更习惯于使用中缀表达式，例如`(2+3)*5`这样的，但是这在计算机语言中是很麻烦的，所以我考虑将其转为后缀表达式，也是逆波兰表达式的一种，可以转为`2 3 + 5 *`这样就可以让计算机明白我们表达式的计算顺序。而要转化为逆波兰表达式，我则需要用到栈`stack`。栈遵循先进后出的原则，所以当输入数字的时候，数字保留在计算的栈中，而判断为运算符号时，就可以进行相应的运算。
 
-In the String multiplication process, I use the method of traversing each digit, noting the position of the decimal point, and inserting it later in the result.
+同时，我实现了更多功能，有开方以及指数运算，这是我们的表达式中会出现`sqrt(2)`或者`(3)^3`这样的表示式子。和第一次project相同，我也使用了正则表达式，去判断，提取了相应的字符，同时先运算了括号中的内容，将结果替换原字符串相应的内容，再转化为逆波兰表达式。
 
-I used integer or decimal expressions for the final results, and optimized the results. For the results with endings like.0, I optimized the results by removing the decimal point.
+正则表示式则是在我的整个代码中都多次使用，判断数字是否为规范的数字，分解数字的各个信息，判断是否为开放或者指数运算都是必要的。
+
+在判断是赋值操作时，为了整个操作系统更加的直观和智能，我在开头可以让用户选择当前的模式，如下，
+```
+选择你的计算模式(a.普通 b.赋值）： 
+输入你的表达式：
+```
+这样当出现例如`x=2`的赋值操作时，我也新建了一个结构体来储存相应符号对应的数字
+```
+struct Fuzhi
+{
+    string symbol, number;
+};
+```
+当出现运算表达式的时候，我会将符号转为相应的数字，再进行逆波兰表达式的转换。
 
 ## Part2 - Code
 ---
