@@ -2,7 +2,7 @@ a
 cmake_install.cmake
 CMakeCache.txt
 Makefile
+.gitignore
 project1_briefcal
 **/CMakeFiles/
 project3_libraryC/CMakeFiles/
-.gitignore
