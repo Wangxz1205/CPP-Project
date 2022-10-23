@@ -2,5 +2,7 @@ a
 cmake_install.cmake
 CMakeCache.txt
 Makefile
-/.vscode
-/CMakeFiles
+project1_briefcal
+project2-Calculator/CMakeFiles/
+project3_libraryC/CMakeFiles/
+gitignore
