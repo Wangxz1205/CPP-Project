@@ -1,4 +1,4 @@
-#include "func.h"
+#include "include/func.h"
 
 void printMatrix(matrix *m) {
     int row = m->row, column = m->column;
@@ -9,7 +9,7 @@ void printMatrix(matrix *m) {
         printf("%f", *pDouble);
         pDouble++;
         if ((i + 1) % column == 0) { printf("\n"); }
-        else { printf(","); }
+        else { printf(" "); }
     }
     printf("\n");
 }

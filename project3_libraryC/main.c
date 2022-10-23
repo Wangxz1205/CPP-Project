@@ -1,4 +1,4 @@
-#include "main.h"
+#include "include/main.h""
 
 int main() {
     float a[3][4] = {{1, 2, 3, 4},
