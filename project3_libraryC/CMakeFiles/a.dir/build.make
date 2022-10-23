@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/wangxz/project3/project3_libraryC
+CMAKE_SOURCE_DIR = /home/wangxz/project/project3_libraryC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/wangxz/project3/project3_libraryC
+CMAKE_BINARY_DIR = /home/wangxz/project/project3_libraryC
 
 # Include any dependencies generated for this target.
 include CMakeFiles/a.dir/depend.make
@@ -72,30 +72,30 @@ include CMakeFiles/a.dir/flags.make
 CMakeFiles/a.dir/main.c.o: CMakeFiles/a.dir/flags.make
 CMakeFiles/a.dir/main.c.o: main.c
 CMakeFiles/a.dir/main.c.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project3/project3_libraryC/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/a.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/a.dir/main.c.o -MF CMakeFiles/a.dir/main.c.o.d -o CMakeFiles/a.dir/main.c.o -c /home/wangxz/project3/project3_libraryC/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project/project3_libraryC/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/a.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/a.dir/main.c.o -MF CMakeFiles/a.dir/main.c.o.d -o CMakeFiles/a.dir/main.c.o -c /home/wangxz/project/project3_libraryC/main.c
 
 CMakeFiles/a.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/a.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/wangxz/project3/project3_libraryC/main.c > CMakeFiles/a.dir/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/wangxz/project/project3_libraryC/main.c > CMakeFiles/a.dir/main.c.i
 
 CMakeFiles/a.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/a.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/wangxz/project3/project3_libraryC/main.c -o CMakeFiles/a.dir/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/wangxz/project/project3_libraryC/main.c -o CMakeFiles/a.dir/main.c.s
 
 CMakeFiles/a.dir/src/func.c.o: CMakeFiles/a.dir/flags.make
 CMakeFiles/a.dir/src/func.c.o: src/func.c
 CMakeFiles/a.dir/src/func.c.o: CMakeFiles/a.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project3/project3_libraryC/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/a.dir/src/func.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/a.dir/src/func.c.o -MF CMakeFiles/a.dir/src/func.c.o.d -o CMakeFiles/a.dir/src/func.c.o -c /home/wangxz/project3/project3_libraryC/src/func.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wangxz/project/project3_libraryC/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/a.dir/src/func.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/a.dir/src/func.c.o -MF CMakeFiles/a.dir/src/func.c.o.d -o CMakeFiles/a.dir/src/func.c.o -c /home/wangxz/project/project3_libraryC/src/func.c
 
 CMakeFiles/a.dir/src/func.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/a.dir/src/func.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/wangxz/project3/project3_libraryC/src/func.c > CMakeFiles/a.dir/src/func.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/wangxz/project/project3_libraryC/src/func.c > CMakeFiles/a.dir/src/func.c.i
 
 CMakeFiles/a.dir/src/func.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/a.dir/src/func.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/wangxz/project3/project3_libraryC/src/func.c -o CMakeFiles/a.dir/src/func.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/wangxz/project/project3_libraryC/src/func.c -o CMakeFiles/a.dir/src/func.c.s
 
 # Object files for target a
 a_OBJECTS = \
@@ -109,7 +109,7 @@ a : CMakeFiles/a.dir/main.c.o
 a : CMakeFiles/a.dir/src/func.c.o
 a : CMakeFiles/a.dir/build.make
 a : CMakeFiles/a.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wangxz/project3/project3_libraryC/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wangxz/project/project3_libraryC/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable a"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/a.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -121,6 +121,6 @@ CMakeFiles/a.dir/clean:
 .PHONY : CMakeFiles/a.dir/clean
 
 CMakeFiles/a.dir/depend:
-	cd /home/wangxz/project3/project3_libraryC && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/wangxz/project3/project3_libraryC /home/wangxz/project3/project3_libraryC /home/wangxz/project3/project3_libraryC /home/wangxz/project3/project3_libraryC /home/wangxz/project3/project3_libraryC/CMakeFiles/a.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/wangxz/project/project3_libraryC && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/wangxz/project/project3_libraryC /home/wangxz/project/project3_libraryC /home/wangxz/project/project3_libraryC /home/wangxz/project/project3_libraryC /home/wangxz/project/project3_libraryC/CMakeFiles/a.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/a.dir/depend
 

@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/wangxz/project3/project3_libraryC/include
+C_INCLUDES = -I/home/wangxz/project/project3_libraryC/include
 
 C_FLAGS = 
 
