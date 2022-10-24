@@ -1,0 +1,3 @@
+/home/wangxz/project/project3_libraryC/CMakeFiles/a.dir
+/home/wangxz/project/project3_libraryC/CMakeFiles/edit_cache.dir
+/home/wangxz/project/project3_libraryC/CMakeFiles/rebuild_cache.dir
