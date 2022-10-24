@@ -1,3 +1,7 @@
 **/.vscode/
-**/.idea/
+**/CMakeFiles/
 **/cmake-build-debug/
+a
+CMakeCache.txt
+cmake_install.cmake
+Makefile

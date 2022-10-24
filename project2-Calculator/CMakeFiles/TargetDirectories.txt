@@ -1,3 +1,0 @@
-/home/wangxz/project2/project2-Calculator/CMakeFiles/a.dir
-/home/wangxz/project2/project2-Calculator/CMakeFiles/edit_cache.dir
-/home/wangxz/project2/project2-Calculator/CMakeFiles/rebuild_cache.dir
