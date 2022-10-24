@@ -25,6 +25,8 @@ int main()
     float max = Max(m1);
     float min = Min(m2);
 
+    // deleteMatrix(m1);
+
     // printMatrix(m1);
     // printMatrix(m2);
     // printMatrix(m3);

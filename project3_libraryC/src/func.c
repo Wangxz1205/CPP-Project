@@ -19,8 +19,6 @@ matrix *createMatrix(int row, int column, float *data)
 
 void deleteMatrix(matrix *m)
 {
-    if (m == NULL)
-        return;
     free(m->pdata);
     free(m);
     m = NULL;
