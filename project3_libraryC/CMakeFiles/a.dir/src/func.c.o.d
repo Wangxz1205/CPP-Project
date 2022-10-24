@@ -1,4 +1,5 @@
-CMakeFiles/a.dir/main.c.o: /home/wangxz/project/project3_libraryC/main.c \
+CMakeFiles/a.dir/src/func.c.o: \
+ /home/wangxz/project/project3_libraryC/src/func.c \
  /usr/include/stdc-predef.h \
  /home/wangxz/project/project3_libraryC/include/func.h \
  /usr/include/malloc.h /usr/include/features.h \

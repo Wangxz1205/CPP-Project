@@ -1,39 +1,39 @@
-#ifndef PROJECT_2_MATRIX_OPERATION_MATRIXOPERATION_H
-#define PROJECT_2_MATRIX_OPERATION_MATRIXOPERATION_H
+#ifndef __FUNC_H__
+#define __FUNC_H__
 
 #include "malloc.h"
 #include "assert.h"
 #include "string.h"
 
-typedef struct{
+typedef struct
+{
     int row;
     int column;
-    float *data;
-}matrix;
+    float *pdata;
+} matrix;
 
-void printMatrix(matrix *m);
-
-matrix *createMatrix(float *data, int row, int column);
+matrix *createMatrix(int row, int column, float *data);
 
 void deleteMatrix(matrix *m);
 
 matrix *copyMatrix(matrix *m);
 
-matrix *addMatrix(matrix *matrix1, matrix *matrix2);
+matrix *addMatrix(matrix *m1, matrix *m2);
 
-matrix *subtractMatrix(matrix *matrix1, matrix *matrix2);
+matrix *subtractMatrix(matrix *m1, matrix *m2);
 
-void addScalar(matrix *m, float scalar);
+matrix *multiplyMatrix(matrix *m1, matrix *m2);
 
-void subtractScalar(matrix *m, float scalar);
+matrix *addScalar(matrix *m, float scalar);
 
-void multiplyScalar(matrix *m, float scalar);
+matrix *subtractScalar(matrix *m, float scalar);
 
-float max(matrix *m);
+matrix *multiplyScalar(matrix *m, float scalar);
 
-float min(matrix *m);
+float Max(matrix *m);
 
-matrix *multiplyMatrix(matrix *matrix1, matrix *matrix2);
+float Min(matrix *m);
 
-#endif //PROJECT_2_MATRIX_OPERATION_MATRIXOPERATION_H
+void printMatrix(matrix *m);
 
+#endif

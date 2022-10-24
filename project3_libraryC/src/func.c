@@ -1,16 +1,174 @@
-#include "include/func.h"
+#include "func.h"
+
+matrix *createMatrix(int row, int column, float *data)
+{
+    matrix *m = (matrix *)malloc(sizeof(matrix));
+    m->row = row;
+    m->column = column;
+    m->pdata = (float *)malloc(row * column * sizeof(float));
+
+    for (int i = 0; i < row * column; i++)
+    {
+        *m->pdata = *data;
+        m->pdata++;
+        data++;
+    }
+    m->pdata -= row * column;
+    return m;
+}
+
+void deleteMatrix(matrix *m)
+{
+    if (m == NULL)
+        return;
+    free(m->pdata);
+    free(m);
+    m = NULL;
+}
+
+matrix *copyMatrix(matrix *m)
+{
+    float *newdata = (float *)malloc(m->row * m->column * sizeof(float));
+    memcpy(newdata, m->pdata, m->row * m->column * sizeof(float));
+    matrix *mcopy = createMatrix(m->row, m->column, newdata);
+    free(newdata);
+    return mcopy;
+}
+
+matrix *addMatrix(matrix *m1, matrix *m2)
+{
+    assert(m1->row == m2->row && m1->column == m2->column);
+
+    float *newdata1 = m1->pdata;
+    float *newdata2 = m2->pdata;
+    float *newdata3 = (float *)malloc(m1->row * m1->column * sizeof(float));
+    for (int i = 0; i < m1->row * m1->column; ++i)
+    {
+        *newdata3 = *newdata1 + *newdata2;
+        newdata1++, newdata2++, newdata3++;
+    }
+    newdata3 -= m1->row * m1->column;
+    matrix *madd = createMatrix(m1->row, m1->column, newdata3);
+    free(newdata3);
+    return madd;
+}
+
+matrix *subtractMatrix(matrix *m1, matrix *m2)
+{
+    assert(m1->row == m2->row && m1->column == m2->column);
+
+    float *newdata1 = m1->pdata;
+    float *newdata2 = m2->pdata;
+    float *newdata3 = (float *)malloc(m1->row * m1->column * sizeof(float));
+    for (int i = 0; i < m1->row * m1->column; ++i)
+    {
+        *newdata3 = *newdata1 - *newdata2;
+        newdata1++, newdata2++, newdata3++;
+    }
+    newdata3 -= m1->row * m1->column;
+    matrix *msub = createMatrix(m1->row, m1->column, newdata3);
+    free(newdata3);
+    return msub;
+}
+
+matrix *multiplyMatrix(matrix *m1, matrix *m2)
+{
+    assert(m1->column == m2->row);
+
+    float *newdata = (float *)malloc(m1->row * m2->column * sizeof(float));
+    for (int i = 0; i < m1->row * m2->column; i++)
+    {
+        float sum = 0;
+        for (int j = 0; j < m1->column; j++)
+        {
+            sum += *(m1->pdata + i / m2->column * m1->column + j) * *(m2->pdata + i % m2->column + j * m2->column);
+        }
+        *newdata = sum;
+        newdata++;
+    }
+    newdata -= m1->row * m2->column;
+    matrix *mmul = createMatrix(m1->row, m2->column, newdata);
+    free(newdata);
+    return mmul;
+}
+
+matrix *addScalar(matrix *m, float scalar)
+{
+    float *newdata = (float *)malloc(m->row * m->column * sizeof(float));
+    for (int i = 0; i < m->row * m->column; i++)
+    {
+        *newdata = *m->pdata + scalar;
+        m->pdata++, newdata++;
+    }
+    m->pdata -= m->row * m->column;
+    newdata -= m->row * m->column;
+    matrix *sadd = createMatrix(m->row, m->column, newdata);
+    free(newdata);
+    return sadd;
+}
+
+matrix *subtractScalar(matrix *m, float scalar)
+{
+    float *newdata = (float *)malloc(m->row * m->column * sizeof(float));
+    for (int i = 0; i < m->row * m->column; i++)
+    {
+        *newdata = *m->pdata - scalar;
+        m->pdata++, newdata++;
+    }
+    m->pdata -= m->row * m->column;
+    newdata -= m->row * m->column;
+    matrix *ssub = createMatrix(m->row, m->column, newdata);
+    free(newdata);
+    return ssub;
+}
+
+matrix *multiplyScalar(matrix *m, float scalar)
+{
+    float *newdata = (float *)malloc(m->row * m->column * sizeof(float));
+    for (int i = 0; i < m->row * m->column; i++)
+    {
+        *newdata = *m->pdata * scalar;
+        m->pdata++, newdata++;
+    }
+    m->pdata -= m->row * m->column;
+    newdata -= m->row * m->column;
+    matrix *smul = createMatrix(m->row, m->column, newdata);
+    free(newdata);
+    return smul;
+}
+
+float Max(matrix *m)
+{
+    float max = __FLT_MIN__;
+    for (int i = 0; i < m->row * m->column; i++)
+    {
+        max = (*m->pdata >= max) ? *m->pdata : max;
+        m->pdata++;
+    }
+    m->pdata -= m->row * m->column;
+    return max;
+}
+
+float Min(matrix *m)
+{
+    float min = __FLT_MAX__;
+    for (int i = 0; i < m->row * m->column; i++)
+    {
+        min = (*m->pdata <= min) ? *m->pdata : min;
+        m->pdata++;
+    }
+    m->pdata -= m->row * m->column;
+    return min;
+}
 
 void printMatrix(matrix *m)
 {
-    int row = m->row, column = m->column;
-    float *pDouble = m->data;
-
     printf("Matrix: \n");
-    for (int i = 0; i < row * column; ++i)
+    for (int i = 0; i < m->row * m->column; i++)
     {
-        printf("%f", *pDouble);
-        pDouble++;
-        if ((i + 1) % column == 0)
+        printf("%f", *m->pdata);
+        m->pdata++;
+        if ((i + 1) % m->column == 0)
         {
             printf("\n");
         }
@@ -19,156 +177,6 @@ void printMatrix(matrix *m)
             printf(" ");
         }
     }
+    m->pdata -= m->row * m->column;
     printf("\n");
-}
-
-matrix *createMatrix(int row, int column, float *data)
-{
-    matrix *m = (matrix *)malloc(sizeof(matrix));
-    m->row = row;
-    m->column = column;
-    m->data = (float *)malloc(sizeof(float) * row * column);
-
-    float *pDouble = m->data;
-    for (int i = 0; i < row * column; ++i)
-    {
-        *pDouble = *data;
-        pDouble++;
-        data++;
-    }
-    return m;
-}
-
-void deleteMatrix(matrix *m)
-{
-    if (m == NULL)
-        return;
-    free(m->data);
-    free(m);
-    m = NULL;
-}
-
-matrix *copyMatrix(matrix *m)
-{
-    float *pDouble3 = (float *)malloc(m->row * m->column * sizeof(float));
-    memcpy(pDouble3, m->data, m->row * m->column * sizeof(float));
-    matrix *copy = createMatrix(pDouble3, m->row, m->column);
-    return copy;
-}
-
-matrix *addMatrix(matrix *matrix1, matrix *matrix2)
-{
-    int row = matrix1->row, column = matrix1->column;
-    assert(row == matrix2->row);
-    assert(column == matrix2->column);
-
-    float *pDouble1 = matrix1->data;
-    float *pDouble2 = matrix2->data;
-    float *pDouble3 = (float *)malloc(row * column * sizeof(float));
-    for (int i = 0; i < row * column; ++i)
-    {
-        *pDouble3 = *pDouble1 + *pDouble2;
-        pDouble1++;
-        pDouble2++;
-        pDouble3++;
-    }
-    pDouble3 -= row * column;
-    matrix *result = createMatrix(pDouble3, row, column);
-    return result;
-}
-
-matrix *subtractMatrix(matrix *matrix1, matrix *matrix2)
-{
-    int row = matrix1->row, column = matrix1->column;
-    assert(row == matrix2->row);
-    assert(column == matrix2->column);
-
-    float *pDouble1 = matrix1->data;
-    float *pDouble2 = matrix2->data;
-    float *pDouble3 = (float *)malloc(row * column * sizeof(float));
-    for (int i = 0; i < row * column; ++i)
-    {
-        *pDouble3 = *pDouble1 - *pDouble2;
-        pDouble1++;
-        pDouble2++;
-        pDouble3++;
-    }
-    pDouble3 -= row * column;
-    matrix *result = createMatrix(pDouble3, row, column);
-    return result;
-}
-
-void addScalar(matrix *m, float scalar)
-{
-    int row = m->row, column = m->column;
-    float *pDouble = m->data;
-    for (int i = 0; i < row * column; ++i)
-    {
-        *pDouble += scalar;
-        pDouble++;
-    }
-}
-
-void subtractScalar(matrix *m, float scalar)
-{
-    addScalar(m, -scalar);
-}
-
-void multiplyScalar(matrix *m, float scalar)
-{
-    int row = m->row, column = m->column;
-    float *pDouble = m->data;
-    for (int i = 0; i < row * column; ++i)
-    {
-        *pDouble *= scalar;
-        pDouble++;
-    }
-}
-
-float max(matrix *m)
-{
-    float max = 0;
-    int row = m->row, column = m->column;
-    float *pDouble = m->data;
-    for (int i = 0; i < row * column; ++i)
-    {
-        if (*pDouble > max)
-            max = *pDouble;
-        pDouble++;
-    }
-    return max;
-}
-
-float min(matrix *m)
-{
-    float min = 0;
-    int row = m->row, column = m->column;
-    float *pDouble = m->data;
-    for (int i = 0; i < row * column; ++i)
-    {
-        if (*pDouble < min)
-            min = *pDouble;
-        pDouble++;
-    }
-    return min;
-}
-
-matrix *multiplyMatrix(matrix *matrix1, matrix *matrix2)
-{
-    assert(matrix1->column == matrix2->row);
-    int row = matrix1->row, column = matrix2->column, middle = matrix1->column;
-    float *pDouble = (float *)malloc(row * column * sizeof(float));
-    for (int i = 0; i < row * column; ++i)
-    {
-        int n_row = i / column, n_column = i % column;
-        float sum = 0;
-        for (int j = 0; j < middle; ++j)
-        {
-            sum += *(matrix1->data + n_row * middle + j) * *(matrix2->data + n_column + j * column);
-        }
-        *pDouble = sum;
-        pDouble++;
-    }
-    pDouble -= row * column;
-    return createMatrix(pDouble, row, column);
 }
