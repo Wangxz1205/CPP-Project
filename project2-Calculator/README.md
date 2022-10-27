@@ -47,7 +47,7 @@ struct Fuzhi
 ## Part2 - Code
 
 ---
-这是我的`mai.cpp`文件
+这是我的`main.cpp`文件
 
 ```c++
 #include <iostream>
