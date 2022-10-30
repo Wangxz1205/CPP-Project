@@ -26,6 +26,13 @@ typedef struct
 
 在其他功能我添加了一个矩阵的打印，将矩阵给打印出来，同时也可以更好地对代码进行检查。
 
+所有的代码以及报告都可以在我的github中看到：
+https://github.com/Wangxz1205/CPP-Project
+
+or
+
+https://github.com/Wangxz1205/CPP-Project.git
+
 ## Part2 - Code
 
 ---
