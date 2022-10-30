@@ -36,8 +36,8 @@ typedef struct
 
 matrix *createMatrix(int row, int column, float *data)
 {
-    assert(row > 0 && column > 0);
-
+    assert(row > 0 && column > 0 && data != NULL);
+    
     matrix *m = (matrix *)malloc(sizeof(matrix));
     m->row = row;
     m->column = column;
@@ -55,10 +55,6 @@ matrix *createMatrix(int row, int column, float *data)
 
 void deleteMatrix(matrix *m)
 {
-    if (m == NULL)
-    {
-        return;
-    }
     free(m->pdata);
     free(m);
     m = NULL;
@@ -218,11 +214,109 @@ void printMatrix(matrix *m)
     m->pdata -= m->row * m->column;
     printf("\n");
 }
+
 ```
 
 ## Part3 - Result & Verification
 
 ---
+以下是我做的一些测试，测试了所有的功能，并且做了输出，验证了输出的正确性。
+```
+#include "func.h"
+
+int main()
+{
+    float a[3][4] = {{1.665, 2, 300, 4},
+                     {2, 3, 4.2, 5},
+                     {3.3, 4, 5, 6}};
+    float b[4][2] = {{1, 1},
+                     {-1.3, 0},
+                     {2, 3},
+                     {3.5, 6}};
+    matrix *m1 = createMatrix(3, 4, (float *)a);
+    matrix *m2 = createMatrix(4, 2, (float *)b);
+
+    matrix *m3 = copyMatrix(m1);
+
+    matrix *m4_w = addMatrix(m1, m3);
+    matrix *m5 = subtractMatrix(m1, m4_w);
+    matrix *m6 = multiplyMatrix(m1, m2);
+
+    matrix *m7 = addScalar(m1, 6.5);
+    matrix *m8 = subtractScalar(m1, 10);
+    matrix *m9 = multiplyScalar(m1, -3);
+
+    float max = Max(m1);
+    float min = Min(m2);
+
+    // deleteMatrix(m1);
+
+    printMatrix(m1);
+    printMatrix(m2);
+    printMatrix(m3);
+    printMatrix(m4_w);
+    printMatrix(m5);
+    printMatrix(m6);
+    printMatrix(m7);
+    printMatrix(m8);
+    printMatrix(m9);
+    printf("%f\n",max);
+    printf("%f\n",min);
+
+    return 0;
+}
+```
+最后的答案是：
+```
+Matrix: 
+1.665000 2.000000 300.000000 4.000000
+2.000000 3.000000 4.200000 5.000000
+3.300000 4.000000 5.000000 6.000000
+
+Matrix: 
+1.000000 1.000000
+-1.300000 0.000000
+2.000000 3.000000
+3.500000 6.000000
+
+Matrix: 
+1.665000 2.000000 300.000000 4.000000
+2.000000 3.000000 4.200000 5.000000
+3.300000 4.000000 5.000000 6.000000
+
+Matrix: 
+3.330000 4.000000 600.000000 8.000000
+4.000000 6.000000 8.400000 10.000000
+6.600000 8.000000 10.000000 12.000000
+
+Matrix: 
+-1.665000 -2.000000 -300.000000 -4.000000
+-2.000000 -3.000000 -4.200000 -5.000000
+-3.300000 -4.000000 -5.000000 -6.000000
+
+Matrix: 
+613.065002 925.664978
+24.000000 44.599998
+29.100000 54.299999
+
+Matrix: 
+8.165000 8.500000 306.500000 10.500000
+8.500000 9.500000 10.700000 11.500000
+9.800000 10.500000 11.500000 12.500000
+
+Matrix: 
+-8.335000 -8.000000 290.000000 -6.000000
+-8.000000 -7.000000 -5.800000 -5.000000
+-6.700000 -6.000000 -5.000000 -4.000000
+
+Matrix: 
+-4.995000 -6.000000 -900.000000 -12.000000
+-6.000000 -9.000000 -12.599999 -15.000000
+-9.900000 -12.000000 -15.000000 -18.000000
+
+300.000000
+-1.300000
+```
 <!-- Test case #1: add/minus/multiple/division
 
 ![Alternative text](pic/1.png) -->

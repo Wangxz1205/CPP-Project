@@ -2,7 +2,7 @@
 
 matrix *createMatrix(int row, int column, float *data)
 {
-    assert(row > 0 && column > 0);
+    assert(row > 0 && column > 0 && data != NULL);
     
     matrix *m = (matrix *)malloc(sizeof(matrix));
     m->row = row;

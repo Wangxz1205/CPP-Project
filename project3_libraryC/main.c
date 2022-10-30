@@ -27,17 +27,17 @@ int main()
 
     // deleteMatrix(m1);
 
-    // printMatrix(m1);
-    // printMatrix(m2);
-    // printMatrix(m3);
-    // printMatrix(m4_w);
-    // printMatrix(m5);
-    // printMatrix(m6);
-    // printMatrix(m7);
-    // printMatrix(m8);
-    // printMatrix(m9);
-    // printf("%f\n",max);
-    // printf("%f\n",min);
+    printMatrix(m1);
+    printMatrix(m2);
+    printMatrix(m3);
+    printMatrix(m4_w);
+    printMatrix(m5);
+    printMatrix(m6);
+    printMatrix(m7);
+    printMatrix(m8);
+    printMatrix(m9);
+    printf("%f\n",max);
+    printf("%f\n",min);
 
     return 0;
 }
