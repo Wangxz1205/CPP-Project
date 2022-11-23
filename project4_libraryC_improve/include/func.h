@@ -4,7 +4,7 @@
 #include "malloc.h"
 #include "assert.h"
 #include "string.h"
-#include <time.h>
+#include <sys/time.h>
 
 typedef struct
 {
@@ -12,9 +12,6 @@ typedef struct
     int column;
     float *pdata;
 } matrix;
-
-
-
 
 matrix *createMatrix(int row, int column, float *data);
 
