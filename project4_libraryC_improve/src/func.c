@@ -118,3 +118,40 @@ matrix *matmul_improved(matrix *m1, matrix *m2)
     free(m2new);
     return mmul;
 }
+
+matrix *matmul_improved_omp(matrix *m1, matrix *m2)
+{
+    assert(m1->column == m2->row && m1->column % 16 == 0);
+
+    float *m2new = (float *)aligned_alloc(512, m2->row * m2->column * sizeof(float));
+    for (size_t i = 0; i < m2->row * m2->column; i++)
+    {
+        *(m2new + i) = *(m2->pdata + (i / m2->row) + (i % m2->row) * m2->column);
+    }
+
+    float *newdata = (float *)(aligned_alloc(512, 16 * sizeof(float)));
+    float *newdata1 = (float *)(aligned_alloc(512, m1->row * m2->column * sizeof(float)));
+    __m512 a, b;
+
+#pragma omp parallel for
+    for (size_t i = 0; i < m1->row * m2->column; i++)
+    {
+        __m512 c = _mm512_setzero_ps();
+        for (size_t j = 0; j < m1->column; j += 16)
+        {
+            a = _mm512_load_ps(m1->pdata + (i / m1->column) * m1->column + j);
+            b = _mm512_load_ps(m2new + (i % m2->column) * m2->row + j);
+            c = _mm512_add_ps(c, _mm512_mul_ps(a, b));
+            _mm512_store_ps(newdata, c);
+        }
+        for (size_t k = 0; k < 16; k++)
+        {
+            *(newdata1 + i) += *(newdata + k);
+        }
+    }
+    matrix *mmul = createMatrix(m1->row, m2->column, newdata1);
+    free(newdata);
+    free(newdata1);
+    free(m2new);
+    return mmul;
+}
