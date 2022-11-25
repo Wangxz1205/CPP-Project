@@ -1,5 +1,7 @@
 # CS205 C/ C++ Programming - Project3（第四次的还没写）
 
+gcc main.c  -o test -I /opt/OpenBLAS/include/ -L /opt/OpenBLAS/lib/ -lopenblas -lpthread -mavx512f
+
 <font size=3>**Name:** 王习之（Wang Xizhi）
 
 **SID:** 11911818</font>
