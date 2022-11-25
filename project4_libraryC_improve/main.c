@@ -13,13 +13,19 @@ char name;
 int main()
 {
 
-    int n = 128;
+    int n = 1024;
     matrix *m1 = create_random_matrix(n, n);
     matrix *m2 = create_random_matrix(n, n);
 
     printf("%d*%d matrices multiplication\n\n", n, n);
     // printMatrix(m1);
     // printMatrix(m2);
+    TIME_START
+
+    matrix *m4 = create_random_matrix(n, n);
+    cblas_sgemm(CblasRowMajor, CblasTrans, CblasTrans, m1->row, m2->column, m1->column, 1.0, m1->pdata, m1->row, m2->pdata, m2->row, 0.0, m4->pdata, m1->row);
+    TIME_END("normal")
+    // printMatrix(m5);
 
     TIME_START
     matrix *m5 = matmul_plain(m1, m2);

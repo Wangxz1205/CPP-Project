@@ -1,6 +1,8 @@
 #ifndef __FUNC_H__
 #define __FUNC_H__
 
+#include <stdio.h>
+#include <cblas.h>
 #include "malloc.h"
 #include "assert.h"
 #include "string.h"
