@@ -1,17 +1,19 @@
 #include "func.h"
 
+int timeuse;
+struct timeval start, end;
+char name;
+
+#define TIME_START gettimeofday(&start, NULL);
+#define TIME_END(name)                                                             \
+    gettimeofday(&end, NULL);                                                      \
+    timeuse = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec; \
+    printf("%s: %.4f s\n", name, ((float)timeuse / 1000000.0f));
+
 int main()
 {
-    // float a[3][4] = {{1.665, 2.33, 3.555, 4.2},
-    //                  {2, 3, 4.2, 5},
-    //                  {3.3, 4, 5, 6}};
-    // float b[4][2] = {{1, 1},
-    //                  {-1, 0},
-    //                  {2, 3},
-    //                  {3.5, 6}};
-    // matrix *m1 = createMatrix(3, 4, (float *)a);
-    // matrix *m2 = createMatrix(4, 2, (float *)b);
-    int n = 2*1024;
+
+    int n = 128;
     matrix *m1 = create_random_matrix(n, n);
     matrix *m2 = create_random_matrix(n, n);
 
@@ -19,38 +21,24 @@ int main()
     // printMatrix(m1);
     // printMatrix(m2);
 
-    struct timeval start, end;
+    TIME_START
+    matrix *m5 = matmul_plain(m1, m2);
+    TIME_END("normal")
+    // printMatrix(m5);
 
-    // start = clock();
-
-    // matrix *m5 = matmul_plain(m1, m2);
-
-    // end = clock();
-    // duration = end - start;
-    // printf("%s: duration= %dms\n", "normal", duration);
-
-    // // printf("Result normal ");
-    // // printMatrix(m5);
-
-    // start = clock();
-
-    // matrix *m6 = matmul_improved(m1, m2);
-    // end = clock();
-    // duration = end - start;
-    // printf("%s: duration= %dms\n", "SIMD", duration);
-
-    gettimeofday(&start, NULL);
-
-    matrix *m7 = matmul_improved_omp(m1, m2);
-
-    gettimeofday(&end, NULL);
-    int timeuse = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec;
-    printf("omp: %.4f s\n", ((float)timeuse / 1000000.0f));
-
-    deleteMatrix(m7);
-
-    // printf("Result improved(avx2) ");
+    TIME_START
+    matrix *m6 = matmul_improved(m1, m2);
+    TIME_END("SIMD")
     // printMatrix(m6);
+
+    TIME_START
+    matrix *m7 = matmul_improved_omp(m1, m2);
+    TIME_END("omp")
+    // printMatrix(m7);
+
+    deleteMatrix(m5);
+    deleteMatrix(m6);
+    deleteMatrix(m7);
 
     return 0;
 }

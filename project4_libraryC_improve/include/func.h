@@ -4,20 +4,21 @@
 #include "malloc.h"
 #include "assert.h"
 #include "string.h"
+#include <stdbool.h>
 #include <sys/time.h>
 
 typedef struct
 {
-    int row;
-    int column;
+    size_t row;
+    size_t column;
     float *pdata;
 } matrix;
 
-matrix *createMatrix(int row, int column, float *data);
+matrix *createMatrix(size_t row, size_t column, float *data);
 
-matrix *create_random_matrix(int row, int column);
+matrix *create_random_matrix(size_t row, size_t column);
 
-void deleteMatrix(matrix *m);
+bool deleteMatrix(matrix *m);
 
 matrix *matmul_plain(matrix *m1, matrix *m2);
 

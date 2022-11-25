@@ -3,101 +3,195 @@
 #include <immintrin.h>
 #include <omp.h>
 
-matrix *createMatrix(int row, int column, float *data)
+matrix *createMatrix(size_t row, size_t column, float *data)
 {
-    assert(row > 0 && column > 0 && data != NULL);
+    matrix *m = NULL;
 
-    matrix *m = (matrix *)malloc(sizeof(matrix));
+    if (row == 0 || column == 0 || data == NULL)
+    {
+        fprintf(stderr, "rows and/or colums is 0 or data is empty\n");
+        return NULL;
+    }
+
+    m = (matrix *)malloc(sizeof(matrix));
+
+    if (m == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for a matrix.\n");
+        return NULL;
+    }
+
     m->row = row;
     m->column = column;
     m->pdata = (float *)aligned_alloc(512, row * column * sizeof(float));
+
+    if (m->pdata == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for the matrix data.\n");
+        free(m);
+        return NULL;
+    }
 
     for (size_t i = 0; i < row * column; i++)
     {
         *(m->pdata + i) = *data;
         data++;
     }
+
     return m;
 }
 
-matrix *create_random_matrix(int row, int column)
+matrix *create_random_matrix(size_t row, size_t column)
 {
-    assert(row > 0 && column > 0);
-    matrix *m = (matrix *)malloc(sizeof(matrix));
+    matrix *m = NULL;
+
+    if (row == 0 || column == 0)
+    {
+        fprintf(stderr, "rows and/or colums is 0 or data is empty\n");
+        return NULL;
+    }
+
+    m = (matrix *)malloc(sizeof(matrix));
+
+    if (m == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for a matrix.\n");
+        return NULL;
+    }
+
     m->pdata = (float *)aligned_alloc(512, row * column * sizeof(float)); // allocate memory for the first D of the 2D matrix
     m->row = row;
     m->column = column;
-    // srand((unsigned)time(0));
-    for (int i = 0; i < row * column; i++)
+
+    if (m->pdata == NULL)
     {
-        *(m->pdata + i) = rand() / (float)(RAND_MAX / 100);
+        fprintf(stderr, "Failed to allocate memory for the matrix data.\n");
+        free(m);
+        return NULL;
     }
+
+    for (size_t i = 0; i < row * column; i++)
+        *(m->pdata + i) = rand() / (float)(RAND_MAX / 100);
+
     return m;
 }
 
-void deleteMatrix(matrix *m)
+bool deleteMatrix(matrix *m)
 {
-    free(m->pdata);
+    if (!m)
+        return false;
+    if (m->pdata)
+        free(m->pdata);
     free(m);
-    m = NULL;
+    return true;
 }
 
 void printMatrix(matrix *m)
 {
     printf("Matrix: \n");
-    for (int i = 0; i < m->row * m->column; i++)
+    for (size_t i = 0; i < m->row * m->column; i++)
     {
-        printf("%f", *m->pdata);
-        m->pdata++;
+        printf("%f", *(m->pdata + i));
         if ((i + 1) % m->column == 0)
-        {
             printf("\n");
-        }
         else
-        {
             printf(" ");
-        }
     }
-    m->pdata -= m->row * m->column;
     printf("\n");
 }
 
 matrix *matmul_plain(matrix *m1, matrix *m2)
 {
-    assert(m1->column == m2->row);
+    matrix *mmul = NULL;
 
-    float *newdata = (float *)malloc(m1->row * m2->column * sizeof(float));
-    for (int i = 0; i < m1->row * m2->column; i++)
+    if (m1 == NULL || m2 == NULL || (m1->column != m2->row))
     {
-        float sum = 0;
-        for (int j = 0; j < m1->column; j++)
-        {
-            sum += *(m1->pdata + i / m2->column * m1->column + j) * *(m2->pdata + i % m2->column + j * m2->column);
-        }
-        *newdata = sum;
-        newdata++;
+        fprintf(stderr, "One or two matrices is empty or data is not matched.\n");
+        return NULL;
     }
-    newdata -= m1->row * m2->column;
-    matrix *mmul = createMatrix(m1->row, m2->column, newdata);
-    free(newdata);
+    mmul = (matrix *)malloc(sizeof(matrix));
+
+    if (mmul == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for a matrix.\n");
+        return NULL;
+    }
+
+    mmul->pdata = (float *)aligned_alloc(512, m1->row * m2->column * sizeof(float)); // allocate memory for the first D of the 2D matrix
+    mmul->row = m1->row;
+    mmul->column = m2->column;
+
+    if (mmul->pdata == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for the matrix data.\n");
+        free(mmul);
+        return NULL;
+    }
+
+    for (size_t i = 0; i < m1->column; i++)
+    {
+        // float sum = 0;
+
+        for (size_t j = 0; j < mmul->row * mmul->column; j++)
+        {
+            *(mmul->pdata + j) += *(m1->pdata + (j / m1->column) * m1->column + i) * *(m2->pdata + i * m2->column + j % m2->column);
+        }
+    }
+
     return mmul;
 }
 
 matrix *matmul_improved(matrix *m1, matrix *m2)
 {
-    assert(m1->column == m2->row && m1->column % 16 == 0);
+    matrix *mmul = NULL;
+
+    if (m1 == NULL || m2 == NULL || (m1->column != m2->row) || m1->column % 16 != 0)
+    {
+        fprintf(stderr, "One or two matrices is empty or data is not matched or not match the situation of improvement.\n");
+        return NULL;
+    }
+    mmul = (matrix *)malloc(sizeof(matrix));
+
+    if (mmul == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for a matrix.\n");
+        return NULL;
+    }
 
     float *m2new = (float *)aligned_alloc(512, m2->row * m2->column * sizeof(float));
-    for (size_t i = 0; i < m2->row * m2->column; i++)
+
+    if (m2new == NULL)
     {
+        fprintf(stderr, "Failed to allocate memory for a data.\n");
+        return NULL;
+    }
+
+    for (size_t i = 0; i < m2->row * m2->column; i++)
         *(m2new + i) = *(m2->pdata + (i / m2->row) + (i % m2->row) * m2->column);
+
+    mmul->pdata = (float *)aligned_alloc(512, m1->row * m2->column * sizeof(float)); // allocate memory for the first D of the 2D matrix
+    mmul->row = m1->row;
+    mmul->column = m2->column;
+
+    if (mmul->pdata == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for the matrix data.\n");
+        free(mmul);
+        return NULL;
     }
 
     float *newdata = (float *)(aligned_alloc(512, 16 * sizeof(float)));
-    float *newdata1 = (float *)(aligned_alloc(512, m1->row * m2->column * sizeof(float)));
+
+    if (newdata == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for a data.\n");
+        return NULL;
+    }
+
     __m512 a, b;
 
-    for (size_t i = 0; i < m1->row * m2->column; i++)
+    // #pragma omp parallel for
+    for (size_t i = 0; i < mmul->row * mmul->column; i++)
     {
         __m512 c = _mm512_setzero_ps();
         for (size_t j = 0; j < m1->column; j += 16)
@@ -108,33 +202,64 @@ matrix *matmul_improved(matrix *m1, matrix *m2)
             _mm512_store_ps(newdata, c);
         }
         for (size_t k = 0; k < 16; k++)
-        {
-            *(newdata1 + i) += *(newdata + k);
-        }
+            *(mmul->pdata + i) += *(newdata + k);
     }
-    matrix *mmul = createMatrix(m1->row, m2->column, newdata1);
     free(newdata);
-    free(newdata1);
     free(m2new);
     return mmul;
 }
 
 matrix *matmul_improved_omp(matrix *m1, matrix *m2)
 {
-    assert(m1->column == m2->row && m1->column % 16 == 0);
+    matrix *mmul = NULL;
+
+    if (m1 == NULL || m2 == NULL || (m1->column != m2->row) || m1->column % 16 != 0)
+    {
+        fprintf(stderr, "One or two matrices is empty or data is not matched or not match the situation of improvement.\n");
+        return NULL;
+    }
+    mmul = (matrix *)malloc(sizeof(matrix));
+
+    if (mmul == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for a matrix.\n");
+        return NULL;
+    }
 
     float *m2new = (float *)aligned_alloc(512, m2->row * m2->column * sizeof(float));
-    for (size_t i = 0; i < m2->row * m2->column; i++)
+
+    if (m2new == NULL)
     {
+        fprintf(stderr, "Failed to allocate memory for a data.\n");
+        return NULL;
+    }
+
+    for (size_t i = 0; i < m2->row * m2->column; i++)
         *(m2new + i) = *(m2->pdata + (i / m2->row) + (i % m2->row) * m2->column);
+
+    mmul->pdata = (float *)aligned_alloc(512, m1->row * m2->column * sizeof(float)); // allocate memory for the first D of the 2D matrix
+    mmul->row = m1->row;
+    mmul->column = m2->column;
+
+    if (mmul->pdata == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for the matrix data.\n");
+        free(mmul);
+        return NULL;
     }
 
     float *newdata = (float *)(aligned_alloc(512, 16 * sizeof(float)));
-    float *newdata1 = (float *)(aligned_alloc(512, m1->row * m2->column * sizeof(float)));
+
+    if (newdata == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for a data.\n");
+        return NULL;
+    }
+
     __m512 a, b;
 
 #pragma omp parallel for
-    for (size_t i = 0; i < m1->row * m2->column; i++)
+    for (size_t i = 0; i < mmul->row * mmul->column; i++)
     {
         __m512 c = _mm512_setzero_ps();
         for (size_t j = 0; j < m1->column; j += 16)
@@ -145,13 +270,9 @@ matrix *matmul_improved_omp(matrix *m1, matrix *m2)
             _mm512_store_ps(newdata, c);
         }
         for (size_t k = 0; k < 16; k++)
-        {
-            *(newdata1 + i) += *(newdata + k);
-        }
+            *(mmul->pdata + i) += *(newdata + k);
     }
-    matrix *mmul = createMatrix(m1->row, m2->column, newdata1);
     free(newdata);
-    free(newdata1);
     free(m2new);
     return mmul;
 }
