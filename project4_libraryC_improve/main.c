@@ -8,12 +8,12 @@ char name;
 #define TIME_END(name)                                                             \
     gettimeofday(&end, NULL);                                                      \
     timeuse = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec; \
-    printf("%s: %.4f s\n", name, ((float)timeuse / 1000000.0f));
+    printf("%s: %.6f s\n", name, ((float)timeuse / 1000000.0f));
 
 int main()
 {
 
-    int n = 2 * 1024;
+    int n = 8*1024;
     matrix *m1 = create_random_matrix(n, n);
     matrix *m2 = create_random_matrix(n, n);
 
@@ -26,12 +26,12 @@ int main()
     cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m1->row, m2->column, m1->column, 1.0, m1->pdata, m1->column, m2->pdata, m2->column, 0.0, m4->pdata, m4->column);
     TIME_END("OpenBLAS")
     // printMatrix(m4);
-    // deleteMatrix(m4);
+    //  deleteMatrix(m4);
 
     // TIME_START
     // matrix *m5 = matmul_plain(m1, m2);
     // TIME_END("normal")
-    // // printMatrix(m5);
+    // printMatrix(m5);
     // deleteMatrix(m5);
 
     TIME_START

@@ -1,32 +1,36 @@
-# CS205 C/ C++ Programming - Project3（第四次的还没写）
-
-gcc main.c  -o test -I /opt/OpenBLAS/include/ -L /opt/OpenBLAS/lib/ -lopenblas -lpthread -mavx512f
+# CS205 C/ C++ Programming - Project4
 
 <font size=3>**Name:** 王习之（Wang Xizhi）
 
 **SID:** 11911818</font>
 
 ## Part1 - Analysis
+ 
+---                                                                   
+第四次的project我是在第三次project的基础上对矩阵乘法进行加速。因为矩阵乘法的计算需要占用大量的内存，同时数字的乘法可以多线程并行运算，所以运用了intel的SIMD加速方法，同时也用到了OpenMp。同时还有对plain的计算也做了优化的加速。
 
----
-第三次的project我认为是在C语言的环境下对于指针和function熟练的掌握。我需要建立一个结构体来储存矩阵的信息，同时不确定矩阵的数量的情况下，需要建立指针类型，同时参数的传递基本都是指针类型（*），指针也就指的是地址，我们平时所用的数组也是一种指针。
+根据矩阵乘法的定义的基础版: 使用基础的for循环，单独计算结果矩阵的每一个数字，再一个一个地输入。
+
+改进版的矩阵乘法：因为基础版的矩阵乘法提取数据的时候指针是跳跃的，读取时会花费很多时间，所以考虑计算的时候不跳跃指针，同时也能避免转置矩阵。所以在计算结果的时候，是先将A矩阵的第一列乘B矩阵，得到结果矩阵的第一层，最后再层层相加，这样就让指针更加连续，提高了运算速率。
+
+使用SIMD: 主要使用了 __m512 这个类型的数据存储向量，因为我们的测试矩阵最小的为16*16，所以我考虑了用16线程并行计算。
+
+使用OpenMP: 在使用了 SIMD 的代码上加上了 OpenMP 的指令。
+
+使用OpenBLAS: 通过安装 OpenBLAS 的库并调用得到矩阵。
+
+最后测试的时候还在ARM结构上运行一遍，测试了运行时长。
+
+下面是矩阵的结构体：
 
 ```c++
 typedef struct
 {
-    int row;
-    int column;
+    size_t row;
+    size_t column;
     float *pdata;
 } matrix;
 ```
-
-分析整个题目要求之后，我明白了我们需要做一个类似于包含了多个function的library库，这些function可以实现矩阵之间的加减乘，矩阵与数字的加减乘，矩阵的复制，建立与删除，以及寻找矩阵数中的最大小值等等，所有的方法都是matrix的指针类型，返回的都是指针。
-
-在建立一个新的指针的时候，我们需要用到在c语言中独有的`malloc`方法，去申请一个已知大小的空间给到这个指针。同时，整个的计算过程都是利用指针对应的地址的值去计算的。
-
-有一些function需要先做异常判断，例如矩阵的相乘，需要先判断前一个矩阵的列数与后一个矩阵的行数相等才能做计算，这个时候用到了`assert`方法去进行一个异常的判断处理。
-
-在其他功能我添加了一个矩阵的打印，将矩阵给打印出来，同时也可以更好地对代码进行检查。
 
 所有的代码以及报告都可以在我的github中看到：
 https://github.com/Wangxz1205/CPP-Project
@@ -38,294 +42,210 @@ https://github.com/Wangxz1205/CPP-Project.git
 ## Part2 - Code
 
 ---
-这是我的`func.c`文件,main.c的文件比较基础，就不在这里列出，具体内容可以查看github。
+### 普通矩阵乘法
+
+这里的矩阵乘法我没有使用最基础版本的，而是放的修改指针提取顺序的版本，同时之后的计算结果也都用的改进后的版本。
 
 ```c
-#include "func.h"
-
-matrix *createMatrix(int row, int column, float *data)
+matrix *matmul_plain(matrix *m1, matrix *m2)
 {
-    assert(row > 0 && column > 0 && data != NULL);
-    
-    matrix *m = (matrix *)malloc(sizeof(matrix));
-    m->row = row;
-    m->column = column;
-    m->pdata = (float *)malloc(row * column * sizeof(float));
+    matrix *mmul = NULL;
 
-    for (int i = 0; i < row * column; i++)
+    if (m1 == NULL || m2 == NULL || (m1->column != m2->row))
     {
-        *m->pdata = *data;
-        m->pdata++;
-        data++;
+        fprintf(stderr, "One or two matrices is empty or data is not matched.\n");
+        return NULL;
     }
-    m->pdata -= row * column;
-    return m;
-}
+    mmul = (matrix *)malloc(sizeof(matrix));
 
-void deleteMatrix(matrix *m)
-{
-    free(m->pdata);
-    free(m);
-    m = NULL;
-}
-
-matrix *copyMatrix(matrix *m)
-{
-    float *newdata = (float *)malloc(m->row * m->column * sizeof(float));
-    memcpy(newdata, m->pdata, m->row * m->column * sizeof(float));
-    matrix *mcopy = createMatrix(m->row, m->column, newdata);
-    free(newdata);
-    return mcopy;
-}
-
-matrix *addMatrix(matrix *m1, matrix *m2)
-{
-    assert(m1->row == m2->row && m1->column == m2->column);
-
-    float *newdata1 = m1->pdata;
-    float *newdata2 = m2->pdata;
-    float *newdata3 = (float *)malloc(m1->row * m1->column * sizeof(float));
-    for (int i = 0; i < m1->row * m1->column; ++i)
+    if (mmul == NULL)
     {
-        *newdata3 = *newdata1 + *newdata2;
-        newdata1++, newdata2++, newdata3++;
+        fprintf(stderr, "Failed to allocate memory for a matrix.\n");
+        return NULL;
     }
-    newdata3 -= m1->row * m1->column;
-    matrix *madd = createMatrix(m1->row, m1->column, newdata3);
-    free(newdata3);
-    return madd;
-}
 
-matrix *subtractMatrix(matrix *m1, matrix *m2)
-{
-    assert(m1->row == m2->row && m1->column == m2->column);
+    mmul->pdata = (float *)aligned_alloc(512, m1->row * m2->column * sizeof(float)); // allocate memory for the first D of the 2D matrix
+    mmul->row = m1->row;
+    mmul->column = m2->column;
 
-    float *newdata1 = m1->pdata;
-    float *newdata2 = m2->pdata;
-    float *newdata3 = (float *)malloc(m1->row * m1->column * sizeof(float));
-    for (int i = 0; i < m1->row * m1->column; ++i)
+    if (mmul->pdata == NULL)
     {
-        *newdata3 = *newdata1 - *newdata2;
-        newdata1++, newdata2++, newdata3++;
+        fprintf(stderr, "Failed to allocate memory for the matrix data.\n");
+        free(mmul);
+        return NULL;
     }
-    newdata3 -= m1->row * m1->column;
-    matrix *msub = createMatrix(m1->row, m1->column, newdata3);
-    free(newdata3);
-    return msub;
-}
 
-matrix *multiplyMatrix(matrix *m1, matrix *m2)
-{
-    assert(m1->column == m2->row);
-
-    float *newdata = (float *)malloc(m1->row * m2->column * sizeof(float));
-    for (int i = 0; i < m1->row * m2->column; i++)
+    for (size_t i = 0; i < m1->column; i++)
     {
-        float sum = 0;
-        for (int j = 0; j < m1->column; j++)
+        // float sum = 0;
+
+        for (size_t j = 0; j < mmul->row * mmul->column; j++)
         {
-            sum += *(m1->pdata + i / m2->column * m1->column + j) * *(m2->pdata + i % m2->column + j * m2->column);
+            *(mmul->pdata + j) += *(m1->pdata + (j / m1->column) * m1->column + i) * *(m2->pdata + i * m2->column + j % m2->column);
         }
-        *newdata = sum;
-        newdata++;
     }
-    newdata -= m1->row * m2->column;
-    matrix *mmul = createMatrix(m1->row, m2->column, newdata);
-    free(newdata);
+
     return mmul;
 }
+```
 
-matrix *addScalar(matrix *m, float scalar)
+### SIMD矩阵乘法
+```c
+matrix *matmul_improved(matrix *m1, matrix *m2)
 {
-    float *newdata = (float *)malloc(m->row * m->column * sizeof(float));
-    for (int i = 0; i < m->row * m->column; i++)
+    matrix *mmul = NULL;
+
+    if (m1 == NULL || m2 == NULL || (m1->column != m2->row) || m1->column % 16 != 0)
     {
-        *newdata = *m->pdata + scalar;
-        m->pdata++, newdata++;
+        fprintf(stderr, "One or two matrices is empty or data is not matched or not match the situation of improvement.\n");
+        return NULL;
     }
-    m->pdata -= m->row * m->column;
-    newdata -= m->row * m->column;
-    matrix *sadd = createMatrix(m->row, m->column, newdata);
-    free(newdata);
-    return sadd;
-}
+    mmul = (matrix *)malloc(sizeof(matrix));
 
-matrix *subtractScalar(matrix *m, float scalar)
-{
-    float *newdata = (float *)malloc(m->row * m->column * sizeof(float));
-    for (int i = 0; i < m->row * m->column; i++)
+    if (mmul == NULL)
     {
-        *newdata = *m->pdata - scalar;
-        m->pdata++, newdata++;
+        fprintf(stderr, "Failed to allocate memory for a matrix.\n");
+        return NULL;
     }
-    m->pdata -= m->row * m->column;
-    newdata -= m->row * m->column;
-    matrix *ssub = createMatrix(m->row, m->column, newdata);
-    free(newdata);
-    return ssub;
-}
 
-matrix *multiplyScalar(matrix *m, float scalar)
-{
-    float *newdata = (float *)malloc(m->row * m->column * sizeof(float));
-    for (int i = 0; i < m->row * m->column; i++)
+    float *m2new = (float *)aligned_alloc(512, m2->row * m2->column * sizeof(float));
+
+    if (m2new == NULL)
     {
-        *newdata = *m->pdata * scalar;
-        m->pdata++, newdata++;
+        fprintf(stderr, "Failed to allocate memory for a data.\n");
+        return NULL;
     }
-    m->pdata -= m->row * m->column;
-    newdata -= m->row * m->column;
-    matrix *smul = createMatrix(m->row, m->column, newdata);
-    free(newdata);
-    return smul;
-}
 
-float Max(matrix *m)
-{
-    float max = __FLT_MIN__;
-    for (int i = 0; i < m->row * m->column; i++)
+    for (size_t i = 0; i < m2->row * m2->column; i++)
+        *(m2new + i) = *(m2->pdata + (i / m2->row) + (i % m2->row) * m2->column);
+
+    mmul->pdata = (float *)aligned_alloc(512, m1->row * m2->column * sizeof(float)); // allocate memory for the first D of the 2D matrix
+    mmul->row = m1->row;
+    mmul->column = m2->column;
+
+    if (mmul->pdata == NULL)
     {
-        max = (*m->pdata >= max) ? *m->pdata : max;
-        m->pdata++;
+        fprintf(stderr, "Failed to allocate memory for the matrix data.\n");
+        free(mmul);
+        return NULL;
     }
-    m->pdata -= m->row * m->column;
-    return max;
-}
 
-float Min(matrix *m)
-{
-    float min = __FLT_MAX__;
-    for (int i = 0; i < m->row * m->column; i++)
+    float *newdata = (float *)(aligned_alloc(512, 16 * sizeof(float)));
+
+    if (newdata == NULL)
     {
-        min = (*m->pdata <= min) ? *m->pdata : min;
-        m->pdata++;
+        fprintf(stderr, "Failed to allocate memory for a data.\n");
+        return NULL;
     }
-    m->pdata -= m->row * m->column;
-    return min;
-}
 
-void printMatrix(matrix *m)
-{
-    printf("Matrix: \n");
-    for (int i = 0; i < m->row * m->column; i++)
+    __m512 a, b;
+
+    // #pragma omp parallel for
+    for (size_t i = 0; i < mmul->row * mmul->column; i++)
     {
-        printf("%f", *m->pdata);
-        m->pdata++;
-        if ((i + 1) % m->column == 0)
+        __m512 c = _mm512_setzero_ps();
+        for (size_t j = 0; j < m1->column; j += 16)
         {
-            printf("\n");
+            a = _mm512_load_ps(m1->pdata + (i / m1->column) * m1->column + j);
+            b = _mm512_load_ps(m2new + (i % m2->column) * m2->row + j);
+            c = _mm512_add_ps(c, _mm512_mul_ps(a, b));
+            _mm512_store_ps(newdata, c);
         }
-        else
-        {
-            printf(" ");
-        }
+        for (size_t k = 0; k < 16; k++)
+            *(mmul->pdata + i) += *(newdata + k);
     }
-    m->pdata -= m->row * m->column;
-    printf("\n");
+    free(newdata);
+    free(m2new);
+    return mmul;
 }
+```
 
+### OpenMp矩阵乘法
+```c
+matrix *matmul_improved_omp(matrix *m1, matrix *m2)
+{
+    matrix *mmul = NULL;
+
+    if (m1 == NULL || m2 == NULL || (m1->column != m2->row) || m1->column % 16 != 0)
+    {
+        fprintf(stderr, "One or two matrices is empty or data is not matched or not match the situation of improvement.\n");
+        return NULL;
+    }
+    mmul = (matrix *)malloc(sizeof(matrix));
+
+    if (mmul == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for a matrix.\n");
+        return NULL;
+    }
+
+    float *m2new = (float *)aligned_alloc(512, m2->row * m2->column * sizeof(float));
+
+    if (m2new == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for a data.\n");
+        return NULL;
+    }
+
+    for (size_t i = 0; i < m2->row * m2->column; i++)
+        *(m2new + i) = *(m2->pdata + (i / m2->row) + (i % m2->row) * m2->column);
+
+    mmul->pdata = (float *)aligned_alloc(512, m1->row * m2->column * sizeof(float)); // allocate memory for the first D of the 2D matrix
+    mmul->row = m1->row;
+    mmul->column = m2->column;
+
+    if (mmul->pdata == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for the matrix data.\n");
+        free(mmul);
+        return NULL;
+    }
+
+    float *newdata = (float *)(aligned_alloc(512, 16 * sizeof(float)));
+
+    if (newdata == NULL)
+    {
+        fprintf(stderr, "Failed to allocate memory for a data.\n");
+        return NULL;
+    }
+
+    __m512 a, b;
+
+#pragma omp parallel for
+    for (size_t i = 0; i < mmul->row * mmul->column; i++)
+    {
+        __m512 c = _mm512_setzero_ps();
+        for (size_t j = 0; j < m1->column; j += 16)
+        {
+            a = _mm512_load_ps(m1->pdata + (i / m1->column) * m1->column + j);
+            b = _mm512_load_ps(m2new + (i % m2->column) * m2->row + j);
+            c = _mm512_add_ps(c, _mm512_mul_ps(a, b));
+            _mm512_store_ps(newdata, c);
+        }
+        for (size_t k = 0; k < 16; k++)
+            *(mmul->pdata + i) += *(newdata + k);
+    }
+    free(newdata);
+    free(m2new);
+    return mmul;
+}
+```
+
+### OpenBlas矩阵乘法
+```c
+cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m1->row, m2->column, m1->column, 1.0, m1->pdata, m1->column, m2->pdata, m2->column, 0.0, m4->pdata, m4->column);
 ```
 
 ## Part3 - Result & Verification
 
 ---
-以下是我做的一些测试，测试了所有的功能，并且做了输出，验证了输出的正确性。
-```
-#include "func.h"
-
-int main()
-{
-    float a[3][4] = {{1.665, 2, 300, 4},
-                     {2, 3, 4.2, 5},
-                     {3.3, 4, 5, 6}};
-    float b[4][2] = {{1, 1},
-                     {-1.3, 0},
-                     {2, 3},
-                     {3.5, 6}};
-    matrix *m1 = createMatrix(3, 4, (float *)a);
-    matrix *m2 = createMatrix(4, 2, (float *)b);
-
-    matrix *m3 = copyMatrix(m1);
-
-    matrix *m4_w = addMatrix(m1, m3);
-    matrix *m5 = subtractMatrix(m1, m4_w);
-    matrix *m6 = multiplyMatrix(m1, m2);
-
-    matrix *m7 = addScalar(m1, 6.5);
-    matrix *m8 = subtractScalar(m1, 10);
-    matrix *m9 = multiplyScalar(m1, -3);
-
-    float max = Max(m1);
-    float min = Min(m2);
-
-    // deleteMatrix(m1);
-
-    printMatrix(m1);
-    printMatrix(m2);
-    printMatrix(m3);
-    printMatrix(m4_w);
-    printMatrix(m5);
-    printMatrix(m6);
-    printMatrix(m7);
-    printMatrix(m8);
-    printMatrix(m9);
-    printf("%f\n",max);
-    printf("%f\n",min);
-
-    return 0;
-}
-```
-最后的答案是：
-```
-Matrix: 
-1.665000 2.000000 300.000000 4.000000
-2.000000 3.000000 4.200000 5.000000
-3.300000 4.000000 5.000000 6.000000
-
-Matrix: 
-1.000000 1.000000
--1.300000 0.000000
-2.000000 3.000000
-3.500000 6.000000
-
-Matrix: 
-1.665000 2.000000 300.000000 4.000000
-2.000000 3.000000 4.200000 5.000000
-3.300000 4.000000 5.000000 6.000000
-
-Matrix: 
-3.330000 4.000000 600.000000 8.000000
-4.000000 6.000000 8.400000 10.000000
-6.600000 8.000000 10.000000 12.000000
-
-Matrix: 
--1.665000 -2.000000 -300.000000 -4.000000
--2.000000 -3.000000 -4.200000 -5.000000
--3.300000 -4.000000 -5.000000 -6.000000
-
-Matrix: 
-613.065002 925.664978
-24.000000 44.599998
-29.100000 54.299999
-
-Matrix: 
-8.165000 8.500000 306.500000 10.500000
-8.500000 9.500000 10.700000 11.500000
-9.800000 10.500000 11.500000 12.500000
-
-Matrix: 
--8.335000 -8.000000 290.000000 -6.000000
--8.000000 -7.000000 -5.800000 -5.000000
--6.700000 -6.000000 -5.000000 -4.000000
-
-Matrix: 
--4.995000 -6.000000 -900.000000 -12.000000
--6.000000 -9.000000 -12.599999 -15.000000
--9.900000 -12.000000 -15.000000 -18.000000
-
-300.000000
--1.300000
-```
+以下分别测试了 $16\times16,\ 128\times128,\ 1k\times1k,\ 8k\times8k$ 时的运行时间，16k 和 64k 因为太大，内存不够所以没有进行测试。
+****         | $16\times16$ | $128\times128$ | $1k\times1k$ | $8k\times8k$ 
+:------------:|:------------:|:--------------:|:----------------:|:----------------:
+ **plain**    |  0.000022s |     0.010612s  |      5.272622s    |      ~45min           
+ **SIMD**     | 0.000005s    |    0.000391s   |   0.096695s     |  106.455070s    
+ **OpenMP**   |  0.000004s    |   0.001321s    |   0.108397s     |  106.240791s     
+ **OpenBLAS** | 0.000014s    |    0.001428s    |  0.079011s      |  2.802694s  
 <!-- Test case #1: add/minus/multiple/division
 
 ![Alternative text](pic/1.png) -->
@@ -333,8 +253,6 @@ Matrix:
 ## Part4 - Difficulties & Solutions
 
 ---
-首先的问题就是在使用了`malloc`方法之后，应该在不需要用到它的时候对他进行释放，使用`free()`方法将它内存释放。
+首先的问题就是在每一次使用了或者新建了指针之后，都要判断指针是否为空，要对每一个参数进行判断，让代码格式更准确。
 
-第二个问题在于当我直接调用`pdata`的指针时，例如在我复制矩阵时，我的思路是将`pdata`进行++处理，去取每一个值，但是在方法最后的时候需要将`pdata`减去`row * column`的值，不要最后返回的矩阵的`pdata`指针的位置是在数组的末尾。而不是最开头。而另一种解决方法就是重新定义一个`float *newdata`去储存原先矩阵的指针，这样就不会改变原先矩阵的值。
 
-在使用`free()`方法的时候，是可以对`NULL`进行处理，返回不做任何操作。所以当出现矩阵为`NULL`的时候，也可以`free`，但是在这之后需要对指针进行`NULL`的赋值操作。
