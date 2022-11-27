@@ -31,8 +31,8 @@ int main()
     // TIME_START
     // matrix *m5 = matmul_plain(m1, m2);
     // TIME_END("normal")
-    // printMatrix(m5);
-    // deleteMatrix(m5);
+    // // printMatrix(m5);
+    // // deleteMatrix(m5);
 
     TIME_START
     matrix *m6 = matmul_improved(m1, m2);
