@@ -38,13 +38,13 @@ int main()
     matrix *m6 = matmul_improved(m1, m2);
     TIME_END("SIMD")
     // printMatrix(m6);
-    // deleteMatrix(m6);
+     deleteMatrix(m6);
 
     TIME_START
     matrix *m7 = matmul_improved_omp(m1, m2);
     TIME_END("omp")
     // printMatrix(m7);
-    // deleteMatrix(m7);
+     deleteMatrix(m7);
 
     return 0;
 }
