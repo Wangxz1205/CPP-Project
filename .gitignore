@@ -7,3 +7,4 @@ a.out
 CMakeCache.txt
 cmake_install.cmake
 Makefile
+main

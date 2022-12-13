@@ -44,12 +44,12 @@ public:
         m_data = shared_ptr<T>(new T[numRows * numCols * numChannels]);
     }
 
-    Matrix(const Matrix &other) : m_numRows(other.m_numRows), m_numCols(other.m_numCols), m_numChannels(other.m_numChannels)
-    {
-        cout << "Copying ..." << endl;
-        m_data = shared_ptr<T>(new T[m_numRows * m_numCols * m_numChannels]);
-        memcpy(m_data.get(), other.m_data.get(), m_numRows * m_numCols * m_numChannels * sizeof(T));
-    }
+    // Matrix(const Matrix &other) : m_numRows(other.m_numRows), m_numCols(other.m_numCols), m_numChannels(other.m_numChannels)
+    // {
+    //     cout << "Copying ..." << endl;
+    //     m_data = shared_ptr<T>(new T[m_numRows * m_numCols * m_numChannels]);
+    //     memcpy(m_data.get(), other.m_data.get(), m_numRows * m_numCols * m_numChannels * sizeof(T));
+    // }
 
     // Destructor to free memory when the matrix is no longer needed
     ~Matrix()
