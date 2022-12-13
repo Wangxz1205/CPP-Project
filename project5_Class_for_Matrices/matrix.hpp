@@ -5,6 +5,7 @@
 #include <typeinfo>
 #include <cstring>
 #include <algorithm>
+#include <memory>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ private:
     size_t m_numChannels;
 
     // Pointer to the matrix data
-    T *m_data;
+    shared_ptr<T> m_data;
 
     // Flag to indicate whether a ROI is set
     bool m_roi;
@@ -40,21 +41,21 @@ public:
     {
         cout << "Constructor(size_t) ..." << endl;
         // Allocate memory for the matrix data
-        m_data = new T[numRows * numCols * numChannels];
+        m_data = shared_ptr<T>(new T[numRows * numCols * numChannels]);
     }
 
     Matrix(const Matrix &other) : m_numRows(other.m_numRows), m_numCols(other.m_numCols), m_numChannels(other.m_numChannels)
     {
         cout << "Copying ..." << endl;
-        m_data = new T[m_numRows * m_numCols * m_numChannels];
-        memcpy(m_data, other.m_data, m_numRows * m_numCols * m_numChannels * sizeof(T));
+        m_data = shared_ptr<T>(new T[m_numRows * m_numCols * m_numChannels]);
+        memcpy(m_data.get(), other.m_data.get(), m_numRows * m_numCols * m_numChannels * sizeof(T));
     }
 
     // Destructor to free memory when the matrix is no longer needed
     ~Matrix()
     {
         cout << "Destructor is running..." << endl;
-        delete[] m_data;
+        m_data.reset();
     }
 
     // Overload the assignment operator to avoid memory hard copy
@@ -88,10 +89,10 @@ public:
     size_t numChannels() const { return m_numChannels; }
 
     // Get a pointer to the matrix data
-    T *data() { return m_data; }
+    shared_ptr<T> data() { return m_data; }
 
     // Get a const pointer to the matrix data (for read-only access)
-    const T *data() const { return m_data; }
+    const shared_ptr<T> data() const { return m_data; }
 
     // Set the region of interest (ROI) in the matrix
     void setROI(size_t startRow, size_t startCol, size_t numRows, size_t numCols);

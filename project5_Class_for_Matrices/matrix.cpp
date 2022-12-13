@@ -10,7 +10,7 @@ bool Matrix<T>::operator==(const Matrix &other) const
     // Compare the matrix data element by element
     for (size_t i = 0; i < m_numRows * m_numCols * m_numChannels; i++)
     {
-        if (m_data[i] != other.m_data[i])
+        if (m_data.get()[i] != other.m_data.get()[i])
             return false;
     }
 
@@ -24,17 +24,11 @@ Matrix<T> &Matrix<T>::operator=(const Matrix &other)
     if (this == &other)
         return *this;
 
-    // Free the current matrix data
-    delete[] m_data;
-
-    // Copy the number of rows, columns, and channels from the other matrix
+    // Copy the number of rows, columns, channels and the data from the other matrix
     m_numRows = other.m_numRows;
     m_numCols = other.m_numCols;
     m_numChannels = other.m_numChannels;
-
-    // Allocate new memory for the matrix data and copy the data from the other matrix
-    m_data = new T[m_numRows * m_numCols * m_numChannels];
-    memcpy(m_data, other.m_data, m_numRows * m_numCols * m_numChannels * sizeof(T));
+    m_data = other.m_data;
 
     return *this;
 }
@@ -54,7 +48,7 @@ Matrix<T> Matrix<T>::operator+(const Matrix &other) const
     // Add the corresponding elements of the two matrices and store the result in the new matrix
     for (size_t i = 0; i < m_numRows * m_numCols * m_numChannels; i++)
     {
-        result.m_data[i] = m_data[i] + other.m_data[i];
+        result.m_data.get()[i] = m_data.get()[i] + other.m_data.get()[i];
     }
     return result;
 }
@@ -74,7 +68,7 @@ Matrix<T> Matrix<T>::operator-(const Matrix &other) const
 
     // Subtract the corresponding elements of the two matrices and store the result in the new matrix
     for (size_t i = 0; i < m_numRows * m_numCols * m_numChannels; i++)
-        result.m_data[i] = m_data[i] - other.m_data[i];
+        result.m_data.get()[i] = m_data.get()[i] - other.m_data.get()[i];
     return result;
 }
 
@@ -86,7 +80,7 @@ Matrix<T> Matrix<T>::operator*(const T &scalar) const
 
     // Multiply each element of the matrix by the scalar and store the result in the new matrix
     for (size_t i = 0; i < m_numRows * m_numCols * m_numChannels; i++)
-        result.m_data[i] = m_data[i] * scalar;
+        result.m_data.get()[i] = m_data.get()[i];
 
     return result;
 }
@@ -111,10 +105,10 @@ Matrix<T> Matrix<T>::operator*(const Matrix &other) const
         {
             for (size_t k = 0; k < m_numChannels; k++)
             {
-                result.m_data[i * other.m_numCols * m_numChannels + j * m_numChannels + k] = 0;
+                result.m_data.get()[i * other.m_numCols * m_numChannels + j * m_numChannels + k] = 0;
                 for (size_t l = 0; l < m_numCols; l++)
-                    result.m_data[i * other.m_numCols * m_numChannels + j * m_numChannels + k] +=
-                        m_data[i * m_numCols * m_numChannels + l * m_numChannels + k] * other.m_data[l * other.m_numCols * other.m_numChannels + j * other.m_numChannels + k];
+                    result.m_data.get()[i * other.m_numCols * m_numChannels + j * m_numChannels + k] +=
+                        m_data.get()[i * m_numCols * m_numChannels + l * m_numChannels + k] * other.m_data.get()[l * other.m_numCols * other.m_numChannels + j * other.m_numChannels + k];
             }
         }
     }
@@ -131,7 +125,7 @@ void Matrix<T>::printmatrix()
         {
             for (size_t k = 0; k < m_numChannels; k++)
             {
-                cout << m_data[i * m_numCols * m_numChannels + j * m_numChannels + k] << " ";
+                cout << m_data.get()[i * m_numCols * m_numChannels + j * m_numChannels + k] << " ";
             }
             cout << "   ";
         }

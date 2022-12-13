@@ -1,4 +1,4 @@
-#include "src/matrix.cpp"
+#include "matrix.cpp"
 
 int main()
 {
@@ -6,14 +6,14 @@ int main()
     Matrix<float> matrix1(3, 3, 3);
     Matrix<float> matrix2(3, 3, 3);
 
-    // Set the elements of the first matrix
+    // Set the elements of the first matrix  p7
     for (size_t i = 0; i < matrix1.numRows(); i++)
     {
         for (size_t j = 0; j < matrix1.numCols(); j++)
         {
             for (size_t k = 0; k < matrix1.numChannels(); k++)
             {
-                matrix1.data()[i * matrix1.numCols() * matrix1.numChannels() + j * matrix1.numChannels() + k] = i + j + k;
+                matrix1.data().get()[i * matrix1.numCols() * matrix1.numChannels() + j * matrix1.numChannels() + k] = i + j + k;
             }
         }
     }
@@ -25,7 +25,7 @@ int main()
         {
             for (size_t k = 0; k < matrix2.numChannels(); k++)
             {
-                matrix2.data()[i * matrix2.numCols() * matrix2.numChannels() + j * matrix2.numChannels() + k] = i * j * k;
+                matrix2.data().get()[i * matrix2.numCols() * matrix2.numChannels() + j * matrix2.numChannels() + k] = i * j * k;
             }
         }
     }
@@ -39,8 +39,8 @@ int main()
     matrix2.printmatrix();
 
     // Assign matrix1 to matrix2
-    // matrix2 = matrix1;
-
+    matrix2 = matrix1;
+    matrix2.printmatrix();
     // Compare matrix1 and matrix2
     if (matrix1 == matrix2)
         cout << "Matrix 1 and matrix 2 are equal" << endl;
@@ -55,25 +55,25 @@ int main()
     matrix3.printmatrix();
 
     // Subtract matrix2 from matrix1
-    Matrix<float> matrix4 = matrix1 - matrix2;
+    matrix3 = matrix1 - matrix2;
 
     // Print the result of the subtraction
     cout << "Matrix 1 - matrix 2:" << endl;
-    matrix4.printmatrix();
+    matrix3.printmatrix();
 
     // Multiply matrix1 by a scalar
-    Matrix<float> matrix5 = matrix1 * 100;
+    matrix3 = matrix1 * 1;
 
     // Print the result of the multiplication
     std::cout << "Matrix 1 * 2:" << std::endl;
-    matrix5.printmatrix();
+    matrix3.printmatrix();
 
     // Multiply matrix1 by matrix2
-    Matrix<float> matrix6 = matrix1 * matrix2;
+    matrix3 = matrix1 * matrix2;
 
     // Print the result of the multiplication
     std::cout << "Matrix 1 * matrix 2:" << std::endl;
-    matrix6.printmatrix();
+    matrix3.printmatrix();
 
     // Set the ROI of matrix1 to the top left 2x2 subregion
     matrix1.setROI(0, 0, 2, 2);
