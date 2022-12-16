@@ -6,8 +6,22 @@
 #include <cstring>
 #include <algorithm>
 #include <memory>
+#include <fstream>
+#include <string>
+#include "omp.h"
+#include <cblas.h>
+#include "malloc.h"
+#include <immintrin.h>
+#include <cstdlib>
+#include <chrono>
 
 using namespace std;
+
+#define TIME_START start = std::chrono::steady_clock::now();
+#define TIME_END(NAME)                                                                     \
+    end = std::chrono::steady_clock::now();                                                \
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count(); \
+    cout << (NAME) << " duration = " << duration << "ms" << endl;
 
 template <typename T>
 class Matrix;
@@ -34,27 +48,29 @@ private:
     size_t m_roiNumCols;
 
 public:
-    Matrix() : m_data(nullptr), m_numRows(0), m_numCols(0), m_numChannels(1) {cout << "Constructor() ..." << endl;}
+    Matrix() : m_data(nullptr), m_numRows(0), m_numCols(0), m_numChannels(1)
+    {
+        // cout << "Constructor() ..." << endl;
+    }
 
     Matrix(size_t numRows, size_t numCols, size_t numChannels)
         : m_numRows(numRows), m_numCols(numCols), m_numChannels(numChannels)
     {
-        cout << "Constructor(size_t) ..." << endl;
-        // Allocate memory for the matrix data
+        // cout << "Constructor(size_t) ..." << endl;
+        //  Allocate memory for the matrix data
         m_data = shared_ptr<T>(new T[numRows * numCols * numChannels]);
     }
 
-    // Matrix(const Matrix &other) : m_numRows(other.m_numRows), m_numCols(other.m_numCols), m_numChannels(other.m_numChannels)
-    // {
-    //     cout << "Copying ..." << endl;
-    //     m_data = shared_ptr<T>(new T[m_numRows * m_numCols * m_numChannels]);
-    //     memcpy(m_data.get(), other.m_data.get(), m_numRows * m_numCols * m_numChannels * sizeof(T));
-    // }
+    Matrix(const Matrix &other) : m_numRows(other.m_numRows), m_numCols(other.m_numCols), m_numChannels(other.m_numChannels)
+    {
+        // cout << "Copying ..." << endl;
+        m_data = other.m_data;
+    }
 
     // Destructor to free memory when the matrix is no longer needed
     ~Matrix()
     {
-        cout << "Destructor is running..." << endl;
+        // cout << "Destructor is running..." << endl;
         m_data.reset();
     }
 
@@ -120,6 +136,12 @@ public:
 
     // Get the number of columns in the ROI
     size_t roiNumCols() const { return m_roiNumCols; }
+
+    void create_random_matrix();
+
+    Matrix matmul_improved(const Matrix &other);
+
+    Matrix matmul_improved_omp(const Matrix &other);
 };
 
 #endif

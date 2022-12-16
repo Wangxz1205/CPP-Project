@@ -1,12 +1,17 @@
 #include "matrix.cpp"
+#include "matrix.hpp"
 
 int main()
 {
+
+    auto start = std::chrono::steady_clock::now();
+    auto end = std::chrono::steady_clock::now();
+    auto duration = 0L;
     // Create two 3x3x3 float matrices
     Matrix<float> matrix1(3, 3, 3);
     Matrix<float> matrix2(3, 3, 3);
 
-    // Set the elements of the first matrix  p7
+    // Set the elements of the first matrix p7
     for (size_t i = 0; i < matrix1.numRows(); i++)
     {
         for (size_t j = 0; j < matrix1.numCols(); j++)
@@ -84,5 +89,36 @@ int main()
     std::cout << "ROI number of rows: " << matrix1.roiNumRows() << std::endl;
     std::cout << "ROI number of columns: " << matrix1.roiNumCols() << std::endl;
 
+    matrix1.printmatrix();
+
+    Matrix<float> matrix4(1024, 1024, 1);
+    matrix4.create_random_matrix();
+    //matrix4.printmatrix();
+
+    Matrix<float> matrix5(1024,1024, 1);
+    matrix5.create_random_matrix();
+    //matrix5.printmatrix();
+
+    TIME_START
+    Matrix<float> matrix6 = matrix4.matmul_improved(matrix5);
+    TIME_END("avx")
+
+    //std::cout << "Matrix 4 * matrix 5:(improved)" << std::endl;
+
+    //matrix6.printmatrix();
+
+    TIME_START
+    matrix6 = matrix4 * matrix5;
+    TIME_END("normal")
+
+    //std::cout << "Matrix 4 * matrix 5:" << std::endl;
+    //matrix6.printmatrix();
+
+    TIME_START
+    matrix6 = matrix4.matmul_improved_omp(matrix5);
+    TIME_END("omp")
+
+    //std::cout << "Matrix 4 * matrix 5:" << std::endl;
+    //matrix6.printmatrix();
     return 0;
 }
